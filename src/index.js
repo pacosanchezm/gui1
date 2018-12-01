@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 
 import Reloj from "./reloj.jsx";
 
+import Dash1 from "../client2/dash1";
+
 const rootElement = document.getElementById("root");
 
 let torender = 1;
@@ -14,7 +16,7 @@ let opt = 2;
 
 if (torender == 1) {
   ReactDOM.render(
-    <Reloj usr={usr} page={page} id={id} opt={opt} />,
+    <Dash1 usr={usr} page={page} id={id} opt={opt} />,
     rootElement
   );
 }
@@ -22,7 +24,6 @@ if (torender == 1) {
 if (torender == 2) {
   ReactDOM.render(<Kwmap7 usr={usr} opt={opt} />, rootElement);
 }
-
 
 //test1
 //test2
