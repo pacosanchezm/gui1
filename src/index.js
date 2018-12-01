@@ -22,3 +22,6 @@ if (torender == 1) {
 if (torender == 2) {
   ReactDOM.render(<Kwmap7 usr={usr} opt={opt} />, rootElement);
 }
+
+
+//test1
