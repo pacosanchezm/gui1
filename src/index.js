@@ -7,7 +7,7 @@ import Dash1 from "../client2/dash1";
 
 const rootElement = document.getElementById("root");
 
-let torender = 1;
+let torender = 2;
 
 let usr = 5666;
 let page = 1387817898201761;
@@ -22,7 +22,7 @@ if (torender == 1) {
 }
 
 if (torender == 2) {
-  ReactDOM.render(<Kwmap7 usr={usr} opt={opt} />, rootElement);
+  ReactDOM.render(<Reloj usr={usr} opt={opt} />, rootElement);
 }
 
 //test1
