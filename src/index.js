@@ -7,7 +7,7 @@ import Dash1 from "../client2/dash1";
 
 const rootElement = document.getElementById("root");
 
-let torender = 2;
+let torender = 1;
 
 let usr = 5666;
 let page = 1387817898201761;

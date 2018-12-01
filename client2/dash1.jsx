@@ -17,6 +17,146 @@ import get from "lodash/get";
 import map from "lodash/map";
 import groupBy from "lodash/groupBy";
 
+// -----------------------------------------
+
+
+let ChartData3 = (MiArray, ChartColores, Labels) => {
+  try {
+
+    let MiLabel = (Categoria, Labels) => {
+      let MiFiltro = Labels.filter((label) => label.value == Categoria)
+
+      if (MiFiltro.length != 0) { return MiFiltro[0].label }
+      else { return Categoria }
+
+    }
+
+    let MiColumnas1 = MiArray.map(row => {
+
+    let MiColumna2 = MiLabel(row.Cat, Labels)
+
+      return MiColumna2
+
+    });
+
+
+    let result = () => {
+
+      let MiStatus = 'Status'
+
+      let MiColor = (Categoria, Colores) => {
+        let MiFiltro = Colores.filter((color) => color.Cat == Categoria)
+
+        if (MiFiltro.length != 0) { return MiFiltro[0].Color }
+        else { return '#808080	' }
+
+      }
+
+      return (
+        [{
+            stack: 0,
+            label: MiStatus,
+
+            data: MiArray.map(row => row.Cantidad),
+            borderWidth: 1,
+            backgroundColor: MiArray.map(row => MiColor(row.Cat, ChartColores)),
+        }]
+      )
+        
+    }
+
+    return ({
+      labels: MiColumnas1,
+      datasets: result(),
+    })
+
+  } catch (e) { console.error(e) }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let ChartBar1 = (props) => {
+
+  return (
+
+    <div>
+
+      <Bar
+        data={props.chartdata}
+        redraw={props.redraw || false}
+
+        options={{
+          title: {
+            display: true,
+            text: `${props.title}`,
+            fontsize: 21,
+          },
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }}
+      />
+
+    </div>
+
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export default class Modulo extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -27,16 +167,16 @@ export default class Modulo extends React.PureComponent {
       Resultado: [],
 
       ChartData1: {},
-      Columnas1: [1, 2, 3, 4],
-      Datos1: [4, 3, 6, 1],
-      Dataset1: [],
+
 
       ChartColores: [
-        { Cat: "Contactar", Color: "#E9967A" }, // darksalmon
-        { Cat: "Contactado", Color: "#006400	" }, // darkgreen
-        { Cat: "Entregado", Color: "#CD853F	" }, // Peru
-        { Cat: "Otros", Color: "#2F4F4F	" }, //DarkSlateGrey
-        { Cat: "Default", Color: "#808080	" } //Grey
+        { Cat: "Enviar", Color: "Grey" }, 
+        { Cat: "Enviado", Color: "Blue" }, 
+        { Cat: "Entregado", Color: "darkgreen" },
+        { Cat: "Descartado", Color: "darkRed" },
+        { Cat: "Leido", Color: "GoldenRod" },
+        { Cat: "Rechazado", Color: "Red" },
+
       ]
     };
   } // ------------------------- Constructor
@@ -60,7 +200,7 @@ export default class Modulo extends React.PureComponent {
           `,
 
         variables: {
-          Campana: 4
+          Campana: 3
         }
       }
     });
@@ -71,10 +211,18 @@ export default class Modulo extends React.PureComponent {
 
     let Labels = [];
 
-    //this.setState({ ChartData1: Charts.ChartData1(resultado, this.state.ChartColores, Labels) })
+    this.setState({ ChartData1: ChartData3(resultado, this.state.ChartColores, Labels) })
   }
 
   render() {
-    return <div>hola</div>;
+    return <div>
+    
+      <ChartBar1
+        title={'Campaña'}
+        chartdata={this.state.ChartData1}
+      />
+    
+    
+    </div>;
   }
 }
