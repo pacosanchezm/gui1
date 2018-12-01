@@ -8,6 +8,15 @@ import * as cssx from "../css/css3";
 
 import axios from "axios";
 
+import { Bar } from "react-chartjs-2";
+
+import _ from "lodash";
+import chain from "lodash/chain";
+import find from "lodash/find";
+import get from "lodash/get";
+import map from "lodash/map";
+import groupBy from "lodash/groupBy";
+
 export default class Modulo extends React.PureComponent {
   constructor(props) {
     super(props);
