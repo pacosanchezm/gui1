@@ -1,8 +1,9 @@
 // ------- Dashmain
 
 
+import React from 'react';
 
-
+import Dash1 from './dash1'
 
 
 export default class Main extends React.PureComponent {
@@ -22,7 +23,7 @@ export default class Main extends React.PureComponent {
 
 
     componentWillMount() {
-      this.getdatoschart1();
+     // this.getdatoschart1();
     }
 
 
@@ -32,7 +33,7 @@ export default class Main extends React.PureComponent {
   render() {
     return <div>
 
-    hola de nuevo
+      <Dash1/>
 
 
     </div>;

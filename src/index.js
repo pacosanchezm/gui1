@@ -4,6 +4,8 @@ import ReactDOM from "react-dom";
 import Reloj from "./reloj.jsx";
 
 import Dash1 from "../client2/dash1";
+import DashMain from "../client2/dashmain1";
+
 
 const rootElement = document.getElementById("root");
 
@@ -16,7 +18,7 @@ let opt = 2;
 
 if (torender == 1) {
   ReactDOM.render(
-    <Dash1 usr={usr} page={page} id={id} opt={opt} />,
+    <DashMain usr={usr} page={page} id={id} opt={opt} />,
     rootElement
   );
 }
