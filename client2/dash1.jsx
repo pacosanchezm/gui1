@@ -8,7 +8,7 @@ import * as cssx from "../css/css3";
 
 import axios from "axios";
 
-import { Bar } from "react-chartjs-2";
+import { Bar, Pie } from "react-chartjs-2";
 
 import _ from "lodash";
 import chain from "lodash/chain";
@@ -79,31 +79,6 @@ let ChartData3 = (MiArray, ChartColores, Labels) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 let ChartBar1 = (props) => {
 
   return (
@@ -115,6 +90,14 @@ let ChartBar1 = (props) => {
         redraw={props.redraw || false}
 
         options={{
+
+          legend: {
+            display: false,
+            labels: {
+              fontColor: 'rgb(255, 99, 132)'
+            }
+          },
+
           title: {
             display: true,
             text: `${props.title}`,
@@ -141,9 +124,33 @@ let ChartBar1 = (props) => {
 
 
 
+let ChartPie1 = (props) => {
 
+  return (
 
+    <div>
 
+      <Pie
+        data={props.chartdata}
+        redraw={props.redraw || false}
+
+        options={{
+
+          legend: {display: false,},
+
+          title: {
+            display: true,
+            text: `${props.title}`,
+            fontsize: 21,
+          },
+
+        }}
+      />
+
+    </div>
+
+  );
+}
 
 
 
@@ -217,7 +224,7 @@ export default class Modulo extends React.PureComponent {
   render() {
     return <div>
     
-      <ChartBar1
+      <ChartPie1
         title={'Campaña'}
         chartdata={this.state.ChartData1}
       />
