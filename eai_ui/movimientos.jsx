@@ -315,7 +315,7 @@ export default class Usuario extends React.PureComponent {
 
     var axdata = await (
       axios({
-        url: '/graphqleai',
+        url: 'https://smxai.net/graphqleai',
         method: 'post',
         data: {
           query: `
