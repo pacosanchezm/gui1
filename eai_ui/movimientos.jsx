@@ -33,7 +33,7 @@ let MiTextArea = glamorous.textarea()
 
 let theme = theme1;
 
-import {Button, ButtonArea} from 'react-weui';
+//import {Button, ButtonArea} from 'react-weui';
 
 
 
