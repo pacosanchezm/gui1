@@ -4,7 +4,7 @@
 //var window = this;
 
 import React from 'react';
-import 'whatwg-fetch';
+//import 'whatwg-fetch';
 import WebviewControls from '../messenger-api-helpers/webview-controls';
 
 
@@ -14,7 +14,7 @@ import * as cssfibo from '../css/fibo1';
 import { theme1, theme3 } from '../css/themes';
 import * as cssx from '../css/css2';
 
-import Dropbox from 'react-select';
+// import Dropbox from 'react-select';
 // import 'react-select/dist/react-select.css';
 
 
