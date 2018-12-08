@@ -67,7 +67,7 @@ let theme = theme1;
 
                   <cssfibo.Box1
                     css={{
-                      width: 233,
+                      width: 377,
                       backgroundColor: props.Theme.backgroundcolor,
                     }}>
 
@@ -187,7 +187,7 @@ let theme = theme1;
               RenglonColor={Micolor}
               Row={row}
               Theme={theme3.renglon}
-              
+
             >
 
             </Renglon1>
@@ -415,8 +415,8 @@ export default class Usuario extends React.PureComponent {
               <Listado1
                 Theme={theme3.encabezado}
                 Registros={this.state.Movimientos}
-              />            
-            
+              />
+
 
 
 
