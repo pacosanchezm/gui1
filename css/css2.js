@@ -512,11 +512,6 @@ exports.grid1 = glamorous.div(({ theme }) => (
 
   display: 'grid',
 
-
-
-
-
-
   }));
 
 

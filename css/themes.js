@@ -248,6 +248,15 @@ exports.theme3 = {
     },
 
 
+    text2: {
+      color: 'red',
+      borderradius: '',
+      size: 12,
+    },
+
+
+
+
 
     input: {
       lineheight: 1,

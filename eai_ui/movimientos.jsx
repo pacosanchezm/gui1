@@ -4,9 +4,7 @@
 //var window = this;
 
 import React from 'react';
-//import 'whatwg-fetch';
 import WebviewControls from '../messenger-api-helpers/webview-controls';
-
 
 import glamorous, { ThemeProvider } from "glamorous";
 import { css } from "glamor";
@@ -14,26 +12,10 @@ import * as cssfibo from '../css/fibo1';
 import { theme1, theme3 } from '../css/themes';
 import * as cssx from '../css/css2';
 
-// import Dropbox from 'react-select';
-// import 'react-select/dist/react-select.css';
-
-
 import axios from 'axios';
-
 import moment from 'moment';
 
 
-let MiInput = glamorous.input()
-
-let MiInput2 = cssx.input2()
-
-
-
-let MiTextArea = glamorous.textarea()
-
-let theme = theme1;
-
-//import {Button, ButtonArea} from 'react-weui';
 
 
 
@@ -42,7 +24,7 @@ let theme = theme1;
   let Micolor = true;
 
 
-
+  let MiSaldo = 0
 
 
 
@@ -69,23 +51,51 @@ let theme = theme1;
                     css={{
                       width: 377,
                       backgroundColor: props.Theme.backgroundcolor,
+                    height: 34
                     }}>
 
 
 
                     <cssfibo.h1
-                      text="Consulta tus Movimientos"
-                      size= '15'
+                      text="Consulta de Movimientos"
+                      size= '18'
                       color='White'
-                      weight="Normal"
+                      weight="Bold"
                       style="Normal"
                     />
 
                   </cssfibo.Box1>
 
 
+                </cssfibo.MyFlex1>
+
+
+
+                <cssfibo.MyFlex1
+                  css={{ backgroundColor: props.Theme.backgroundcolor }}
+                >
+
+                <cssx.box3label css={{ width: '123px' }}>
+                  <cssx.h3>Fecha / Folio</cssx.h3>
+                </cssx.box3label>
+
+                  <cssx.box3label css={{ width: '144px' }}>
+                    <cssx.h3>Sucursal</cssx.h3>
+                  </cssx.box3label>
+
+                  <cssx.box3label css={{ width: '80px' }}>
+                    <cssx.h3>Operación</cssx.h3>
+                  </cssx.box3label>
+
+
+                  <cssx.box3label css={{ width: '34px' }}>
+                    <cssx.h3>Saldo</cssx.h3>
+                  </cssx.box3label>
+
+
 
                 </cssfibo.MyFlex1>
+
 
               </div>
             </ThemeProvider>
@@ -131,10 +141,11 @@ let theme = theme1;
 
         let MiHora = moment(props.Row.Fecha).format("lll")
         let TipoSimple ='|'
-        if (props.Row.Tipo==='INCREMENTO'){TipoSimple='+'}
-        if (props.Row.Tipo==='DECREMENTO'){TipoSimple='-'}
+        let TipoSimpleColor = 'Slategrey'
+        if (props.Row.Tipo==='INCREMENTO'){TipoSimple='+'; TipoSimpleColor='green'}
 
 
+        if (props.Row.Tipo === 'DECREMENTO') { TipoSimple = '-'; TipoSimpleColor = 'red'}
 
 
 
@@ -147,25 +158,25 @@ let theme = theme1;
 
               <cssfibo.MyFlex1 css={{backgroundColor: BgColor}}>
 
-                <cssx.box3label css={{width: '105px'}}>
-                  <cssx.h3>{MiHora}</cssx.h3>
+                <cssx.box3label css={{width: '123px'}}>
+                  <cssx.h3>{MiHora}</cssx.h3> <cssx.h3 css={{ fontSize: 8 }}>{props.Row.Folio}</cssx.h3>
                 </cssx.box3label>
 
-                <cssx.box3label css={{width: '80px'}}>
-                  <cssx.h3>{props.Row.Folio}</cssx.h3>
-                </cssx.box3label>
 
-                <cssx.box3label css={{width: '89px'}}>
+                <cssx.box3label css={{width: '144px'}}>
                   <cssx.h3>{props.Row.Sucursal}</cssx.h3>
                 </cssx.box3label>
 
-                <cssx.box3label css={{width: '21px'}}>
-                  <cssx.h3>{TipoSimple}</cssx.h3>
+                <cssx.box3label css={{width: '34px', paddingRight:21}}>
+                  <cssx.h3 css={{ color: TipoSimpleColor, textAlign:'right' }}>{props.Row.Puntos}</cssx.h3>
                 </cssx.box3label>
 
-                <cssx.box3label css={{width: '89px'}}>
-                  <cssx.h3>{props.Row.Puntos}</cssx.h3>
+
+                <cssx.box3label css={{ width: '34px' }}>
+                  <cssx.h3 css={{ textAlign: 'right' }}>{props.Saldo}</cssx.h3>
                 </cssx.box3label>
+
+
 
               </cssfibo.MyFlex1>
 
@@ -181,18 +192,36 @@ let theme = theme1;
 
         return(
 
+
+
           <div>
+
+            {(() => {
+
+              MiSaldo = MiSaldo + Number(row.Puntos)
+
+
+            })()}
+
+
+
 
             <Renglon1
               RenglonColor={Micolor}
               Row={row}
               Theme={theme3.renglon}
+              Saldo={MiSaldo}
 
             >
 
             </Renglon1>
 
-            {(() => { Micolor = !Micolor;})()}
+            {(() => { 
+              
+              Micolor = !Micolor;
+            
+            
+            })()}
 
           </div>
 
