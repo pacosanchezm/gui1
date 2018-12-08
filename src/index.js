@@ -9,7 +9,7 @@ import DashMain from "../client2/dashmain1";
 
 const rootElement = document.getElementById("root");
 
-let torender = 1;
+let torender = 2;
 
 let usr = 5666;
 let page = 1387817898201761;
@@ -27,10 +27,7 @@ if (torender == 2) {
   ReactDOM.render(<Reloj usr={usr} opt={opt} />, rootElement);
 }
 
-//test1
-//test2
-//test3
-//test5
-//test6
-//test7
-// test9
+if (torender == 3) {
+  ReactDOM.render(<Reloj usr={usr} opt={opt} />, rootElement);
+}
+
