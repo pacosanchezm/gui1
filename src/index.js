@@ -10,12 +10,20 @@ import Movs from "../eai_ui/movimientos.jsx";
 
 const rootElement = document.getElementById("root");
 
-let torender = 2;
+let torender = 3;
 
-let usr = 5666;
-let page = 1387817898201761;
+let usr = 1309103235803674;
+
+
+//let page = 1387817898201761;
+
+let page = 1670865973219070
+
 let id = 188912;
 let opt = 2;
+ 
+
+
 
 if (torender == 1) {
   ReactDOM.render(
@@ -29,6 +37,6 @@ if (torender == 2) {
 }
 
 if (torender == 3) {
-  ReactDOM.render(<Reloj usr={usr} opt={opt} />, rootElement);
+  ReactDOM.render(<Movs usr={usr} page={page} id={id} opt={opt} />, rootElement);
 }
 
