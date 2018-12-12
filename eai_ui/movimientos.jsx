@@ -197,10 +197,7 @@ import moment from 'moment';
           <div>
 
             {(() => {
-
               MiSaldo = MiSaldo + Number(row.Puntos)
-
-
             })()}
 
 
@@ -211,7 +208,6 @@ import moment from 'moment';
               Row={row}
               Theme={theme3.renglon}
               Saldo={MiSaldo}
-
             >
 
             </Renglon1>
@@ -242,7 +238,11 @@ import moment from 'moment';
 
 
 
-
+const LoadingSpinner = () => (
+  <div>
+    <cssx.h3> Cargando...</cssx.h3>
+  </div>
+);
 
 
 
@@ -296,7 +296,7 @@ export default class Usuario extends React.PureComponent {
       ],
 
 
-
+      loading: false,
 
 
       Movimientos:[
@@ -343,6 +343,9 @@ export default class Usuario extends React.PureComponent {
 
   async getdatos() {
 
+
+    this.setState({ loading: true })
+
     var axdata = await (
       axios({
         url: 'https://smxai.net/graphqleai',
@@ -374,6 +377,9 @@ export default class Usuario extends React.PureComponent {
 
     this.setState({Movimientos: data})
 
+    this.setState({ loading: false })
+
+
   }
 
 
@@ -400,13 +406,12 @@ export default class Usuario extends React.PureComponent {
 
   render() {
 
+    const { Movimientos, loading } = this.state;
 
 
     return (
 
-      // <cssfibo.MyGridRouter1>
       <div>
-
 
         <cssfibo.MyFlex3
           css={{
@@ -414,21 +419,21 @@ export default class Usuario extends React.PureComponent {
           }}
           >
 
-            <Encabezado
-              Theme={theme3.encabezado}
-              this={this}
+          <Encabezado
+            Theme={theme3.encabezado}
+            this={this}
 
-            >
+          >
 
-              {({Seccion1}) => (
-                <div>
+            {({ Seccion1 }) => (
+              <div>
 
-                  <div>{Seccion1}</div>
+                <div>{Seccion1}</div>
 
-                </div>
-              )}
+              </div>
+            )}
 
-            </Encabezado>
+          </Encabezado>
 
 
         </cssfibo.MyFlex3>
@@ -441,11 +446,15 @@ export default class Usuario extends React.PureComponent {
 
             <div>
 
+              {loading ? <LoadingSpinner /> : 
+
+
               <Listado1
                 Theme={theme3.encabezado}
                 Registros={this.state.Movimientos}
               />
 
+              }
 
 
 
