@@ -79,16 +79,16 @@ import moment from 'moment';
                   <cssx.h3>Fecha / Folio</cssx.h3>
                 </cssx.box3label>
 
-                  <cssx.box3label css={{ width: '144px' }}>
+                  <cssx.box3label css={{ width: '121px' }}>
                     <cssx.h3>Sucursal</cssx.h3>
                   </cssx.box3label>
 
-                  <cssx.box3label css={{ width: '80px' }}>
+                  <cssx.box3label css={{ width: '70px' }}>
                     <cssx.h3>Operación</cssx.h3>
                   </cssx.box3label>
 
 
-                  <cssx.box3label css={{ width: '34px' }}>
+                  <cssx.box3label css={{ width: '30px' }}>
                     <cssx.h3>Saldo</cssx.h3>
                   </cssx.box3label>
 
@@ -158,7 +158,7 @@ import moment from 'moment';
 
               <cssfibo.MyFlex1 css={{backgroundColor: BgColor}}>
 
-                <cssx.box3label css={{width: '123px'}}>
+                <cssx.box3label css={{width: '110px'}}>
                   <cssx.h3>{MiHora}</cssx.h3> <cssx.h3 css={{ fontSize: 8 }}>{props.Row.Folio}</cssx.h3>
                 </cssx.box3label>
 
@@ -167,12 +167,12 @@ import moment from 'moment';
                   <cssx.h3>{props.Row.Sucursal}</cssx.h3>
                 </cssx.box3label>
 
-                <cssx.box3label css={{width: '34px', paddingRight:21}}>
+                <cssx.box3label css={{width: '21px', paddingRight:21}}>
                   <cssx.h3 css={{ color: TipoSimpleColor, textAlign:'right' }}>{props.Row.Puntos}</cssx.h3>
                 </cssx.box3label>
 
 
-                <cssx.box3label css={{ width: '34px' }}>
+                <cssx.box3label css={{ width: '21px' }}>
                   <cssx.h3 css={{ textAlign: 'right' }}>{props.Saldo}</cssx.h3>
                 </cssx.box3label>
 
@@ -212,11 +212,11 @@ import moment from 'moment';
 
             </Renglon1>
 
-            {(() => { 
-              
+            {(() => {
+
               Micolor = !Micolor;
-            
-            
+
+
             })()}
 
           </div>
@@ -446,7 +446,7 @@ export default class Usuario extends React.PureComponent {
 
             <div>
 
-              {loading ? <LoadingSpinner /> : 
+              {loading ? <LoadingSpinner /> :
 
 
               <Listado1
