@@ -78,7 +78,7 @@ export default class Modulo extends React.PureComponent {
   render() {
     return (
       <div>
-        hola live
+    koko
         <ReactPlayer
           ref={this.ref}
           className="react-player"
@@ -87,6 +87,7 @@ export default class Modulo extends React.PureComponent {
           width="100%"
           height="100%"
         />
+ 
       </div>
     );
   }

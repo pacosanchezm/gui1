@@ -4,7 +4,7 @@ import glamorous, { ThemeProvider } from 'glamorous';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
-require ("babel-polyfill");
+//require ("babel-polyfill");
 
 
 
