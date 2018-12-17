@@ -17,6 +17,7 @@ export default class Modulo extends React.PureComponent {
 
     this.state = {
       page: "777",
+      Mood: 0,
 
       Resultado: [],
 
@@ -45,6 +46,57 @@ export default class Modulo extends React.PureComponent {
   ref = player => {
     this.player = player;
   };
+
+
+
+
+
+
+
+  async setmood(mood) {
+    var axdatachart = await axios({
+      url: "https://smxai.net/graphqlpub",
+      method: "post",
+      data: {
+        query: `
+          mutation MoodC($Reg: MoodInput) {
+            MoodC(Reg: $Reg)
+          }
+          `,
+
+        variables: {
+          Reg: {
+            "IdSesion": 1,
+            "FbId": 5589,
+            "Mood": mood,
+            "Weight": 1,
+            "Obv": "Gui"
+          }
+        }
+      }
+    });
+
+    let resultado = axdatachart.data.data.MoodC;
+
+    this.setState({ Mood: mood });
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   async getdatoschart1(date) {
     var axdatachart = await axios({
@@ -75,15 +127,25 @@ export default class Modulo extends React.PureComponent {
     // this.setState({ ChartData1: ChartData3(resultado, this.state.ChartColores, Labels) })
   }
 
+
+
+
+
+
+
+
+
+
+
   render() {
     return (
       <div>
-    
+
       dadada
-    
-    
-          
-    {/*    
+
+
+
+    {/*
         <ReactPlayer
           ref={this.ref}
           className="react-player"
@@ -93,6 +155,21 @@ export default class Modulo extends React.PureComponent {
           height="100%"
         />
     */}
+
+
+                <cssfibo.Boton2
+                  onClick={() => {
+                    this.setmood(3);
+                  }}
+                  css={{
+                    fontSize: 9,
+                    color: 'White',
+                    backgroundColor: 'SlateGray',
+                }}>
+
+
+
+
 
 
 
