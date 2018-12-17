@@ -5,6 +5,9 @@ import glamorous, { ThemeProvider } from "glamorous";
 import { css } from "glamor";
 import { theme1, theme3 } from "../css/themes";
 import * as cssx from "../css/css3";
+import * as cssfibo from '../css/fibo1';
+
+
 
 import axios from "axios";
 import ReactPlayer from "react-player";
@@ -141,11 +144,9 @@ export default class Modulo extends React.PureComponent {
     return (
       <div>
 
-      dadada
-
-
-
-    {/*
+      Juan Solo - Mis 30
+  
+  
         <ReactPlayer
           ref={this.ref}
           className="react-player"
@@ -154,8 +155,17 @@ export default class Modulo extends React.PureComponent {
           width="100%"
           height="100%"
         />
+
+
+
+
+    {/*
+
     */}
 
+        <cssfibo.Box css={{
+          width: '34px',
+        }}>
 
                 <cssfibo.Boton2
                   onClick={() => {
@@ -166,8 +176,11 @@ export default class Modulo extends React.PureComponent {
                     color: 'White',
                     backgroundColor: 'SlateGray',
                 }}>
+            Mood3
+          </cssfibo.Boton2>
 
 
+        </cssfibo.Box>
 
 
 
