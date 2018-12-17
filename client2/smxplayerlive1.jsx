@@ -7,23 +7,9 @@ import { theme1, theme3 } from "../css/themes";
 import * as cssx from "../css/css3";
 
 import axios from "axios";
-
+import ReactPlayer from "react-player";
 
 //-----------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export default class Modulo extends React.PureComponent {
   constructor(props) {
@@ -36,22 +22,29 @@ export default class Modulo extends React.PureComponent {
 
       ChartData1: {},
 
-
       ChartColores: [
-        { Cat: "Enviar", Color: "Grey" }, 
-        { Cat: "Enviado", Color: "Blue" }, 
+        { Cat: "Enviar", Color: "Grey" },
+        { Cat: "Enviado", Color: "Blue" },
         { Cat: "Entregado", Color: "darkgreen" },
         { Cat: "Descartado", Color: "darkRed" },
         { Cat: "Leido", Color: "GoldenRod" },
-        { Cat: "Rechazado", Color: "Red" },
-
+        { Cat: "Rechazado", Color: "Red" }
       ]
     };
   } // ------------------------- Constructor
 
   componentWillMount() {
-  //  this.getdatoschart1();
+    //  this.getdatoschart1();
   }
+
+  onPlay = () => {
+    console.log("onPlay");
+    this.setState({ playing: true });
+  };
+
+  ref = player => {
+    this.player = player;
+  };
 
   async getdatoschart1(date) {
     var axdatachart = await axios({
@@ -79,15 +72,22 @@ export default class Modulo extends React.PureComponent {
 
     let Labels = [];
 
-   // this.setState({ ChartData1: ChartData3(resultado, this.state.ChartColores, Labels) })
+    // this.setState({ ChartData1: ChartData3(resultado, this.state.ChartColores, Labels) })
   }
 
   render() {
-    return 
-    <div>
-    
-      hola live
-    
-    </div>;
+    return (
+      <div>
+        hola live
+        <ReactPlayer
+          ref={this.ref}
+          className="react-player"
+          url={"https://vimeo.com/" + "200565292"}
+          // muted={this.state.muted}
+          width="100%"
+          height="100%"
+        />
+      </div>
+    );
   }
 }
