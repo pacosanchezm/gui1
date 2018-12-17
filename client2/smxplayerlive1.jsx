@@ -145,8 +145,8 @@ export default class Modulo extends React.PureComponent {
       <div>
 
       Juan Solo - Mis 30
-  
-  
+
+
         <ReactPlayer
           ref={this.ref}
           className="react-player"
@@ -157,31 +157,88 @@ export default class Modulo extends React.PureComponent {
         />
 
 
-
-
     {/*
 
     */}
 
-        <cssfibo.Box css={{
-          width: '34px',
-        }}>
+        <cssfibo.Box css={{width: '34px',}}>
 
-                <cssfibo.Boton2
-                  onClick={() => {
-                    this.setmood(3);
-                  }}
-                  css={{
-                    fontSize: 9,
-                    color: 'White',
-                    backgroundColor: 'SlateGray',
-                }}>
-            Mood3
+          <cssfibo.Boton2
+            onClick={() => {this.setmood(1);}}
+            css={{
+              fontSize: 9,
+              color: 'White',
+              backgroundColor: 'SlateGray',
+            }}>
+            1
           </cssfibo.Boton2>
+
 
 
         </cssfibo.Box>
 
+        <cssfibo.Box css={{width: '34px',}}>
+
+          <cssfibo.Boton2
+            onClick={() => {this.setmood(2);}}
+            css={{
+              fontSize: 9,
+              color: 'White',
+              backgroundColor: 'SlateGray',
+            }}>
+            2
+          </cssfibo.Boton2>
+
+        </cssfibo.Box>
+
+
+
+
+        <cssfibo.Box css={{width: '34px',}}>
+
+          <cssfibo.Boton2
+            onClick={() => {this.setmood(3);}}
+            css={{
+              fontSize: 9,
+              color: 'White',
+              backgroundColor: 'SlateGray',
+            }}>
+            3
+          </cssfibo.Boton2>
+
+        </cssfibo.Box>
+
+
+
+        <cssfibo.Box css={{width: '34px',}}>
+
+          <cssfibo.Boton2
+            onClick={() => {this.setmood(4);}}
+            css={{
+              fontSize: 9,
+              color: 'White',
+              backgroundColor: 'SlateGray',
+            }}>
+            4
+          </cssfibo.Boton2>
+
+        </cssfibo.Box>
+
+
+
+        <cssfibo.Box css={{width: '34px',}}>
+
+          <cssfibo.Boton2
+            onClick={() => {this.setmood(5);}}
+            css={{
+              fontSize: 9,
+              color: 'White',
+              backgroundColor: 'SlateGray',
+            }}>
+            5
+          </cssfibo.Boton2>
+
+        </cssfibo.Box>
 
 
 
