@@ -119,6 +119,7 @@ exports.theme1 = {
       size: 12,
       weight: "Bold",
       style:"Normal",
+      flex: '3'
     },
   },
 

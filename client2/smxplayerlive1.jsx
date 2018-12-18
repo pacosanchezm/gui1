@@ -4,7 +4,7 @@ import WebviewControls from "../messenger-api-helpers/webview-controls";
 import glamorous, { ThemeProvider } from "glamorous";
 import { css } from "glamor";
 import { theme1, theme3 } from "../css/themes";
-import * as cssx from "../css/css3";
+import * as cssx from "../css/css2";
 import * as cssfibo from '../css/fibo1';
 
 
@@ -21,6 +21,14 @@ export default class Modulo extends React.PureComponent {
     this.state = {
       page: "777",
       Mood: 0,
+
+      Nombre: 'Paquito',
+      Origen: 'Celaya',
+      Genero: 'Hombre',
+      Edad: 42,
+      Weight: 2,
+
+
 
       Resultado: [],
 
@@ -88,47 +96,40 @@ export default class Modulo extends React.PureComponent {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  async getdatoschart1(date) {
+  async sendmensaje(texto) {
     var axdatachart = await axios({
       url: "https://smxai.net/graphqlpub",
       method: "post",
       data: {
         query: `
-          query mailstatus($Campana: Int) {
-            IndMailStatusX(Campana: $Campana) {
-              Cat
-              Cantidad
-            }
+          mutation MoodC($Reg: MoodInput) {
+            MoodC(Reg: $Reg)
           }
           `,
 
         variables: {
-          Campana: 3
+          Reg: {
+            "IdSesion": 1,
+            "FbId": 5589,
+            "Mood": mood,
+            "Weight": 1,
+            "Obv": "Gui"
+          }
         }
       }
     });
 
-    let resultado = axdatachart.data.data.IndMailStatusX;
+    let resultado = axdatachart.data.data.MoodC;
 
-    this.setState({ Resultado: resultado });
-
-    let Labels = [];
-
-    // this.setState({ ChartData1: ChartData3(resultado, this.state.ChartColores, Labels) })
+    this.setState({ Mood: mood });
   }
+
+
+
+
+
+
+
 
 
 
@@ -153,7 +154,7 @@ export default class Modulo extends React.PureComponent {
           url={"https://vimeo.com/" + "200565292"}
           // muted={this.state.muted}
           width="100%"
-          height="100%"
+          height="333px"
         />
 
 
@@ -239,6 +240,63 @@ export default class Modulo extends React.PureComponent {
           </cssfibo.Boton2>
 
         </cssfibo.Box>
+
+
+
+
+        <cssfibo.MyFlex3 css={{ gridArea: 'contenido' }}>
+
+          <ThemeProvider theme={theme3.forma}>
+
+            <div>
+
+
+        <cssfibo.MyFlexR1>
+
+
+          <cssx.box3input>
+            <cssx.input3
+              theme={theme3.forma}
+              name='Nombre'
+              // value=''
+              //    onChange={}
+              key="N1"
+            />
+          </cssx.box3input>
+
+
+
+          <cssfibo.Boton1
+            class="noatiende"
+            color={'grey'}
+          //  onClick={() => {this.witquery(this.props.page, this.state.textoquery)}}
+          >
+
+            Enviar
+
+          </cssfibo.Boton1>
+
+
+
+        </cssfibo.MyFlexR1>
+
+
+
+            </div>
+
+          </ThemeProvider>
+
+        </cssfibo.MyFlex3>
+
+
+
+
+
+
+
+
+
+
 
 
 
