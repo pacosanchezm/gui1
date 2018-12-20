@@ -14,6 +14,10 @@ import openSocket from "socket.io-client";
 
 const socket = openSocket("//smxai.net");
 
+socket.on("pregunta", data => {
+  console.log("pregunta recibida:" + JSON.stringify(data));
+});
+
 export default class Modulo extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -29,6 +33,8 @@ export default class Modulo extends React.PureComponent {
       Weight: 2,
       Mensaje: "",
 
+      Pregunta: [],
+
       Resultado: [],
 
       ChartData1: {},
@@ -42,7 +48,11 @@ export default class Modulo extends React.PureComponent {
         { Cat: "Rechazado", Color: "Red" }
       ]
     };
-    //  EscuchaEncuesta(Data => { });
+    //     EscuchaEncuesta(() => {
+    //       socket.on('pregunta', (data) => {
+    //         console.log('recibida:' + data)
+    //       });
+    //     });
   } // ------------------------- Constructor
 
   componentWillMount() {
