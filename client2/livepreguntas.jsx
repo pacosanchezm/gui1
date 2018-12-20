@@ -12,12 +12,7 @@ import openSocket from "socket.io-client";
 
 //-------------------------------
 
-
 const socket = openSocket("//smxai.net");
-
-
-
-
 
 export default class Modulo extends React.PureComponent {
   constructor(props) {
@@ -47,78 +42,58 @@ export default class Modulo extends React.PureComponent {
         { Cat: "Rechazado", Color: "Red" }
       ]
     };
-
-
-    EscuchaEncuesta((Data) => )
-
-
-
-
+    //  EscuchaEncuesta(Data => { });
   } // ------------------------- Constructor
-
-
 
   componentWillMount() {
     //  this.getdatoschart1();
   }
 
-
-
   async setpreguntasimple(Pregunta) {
-
     let MiPregunta = [
       {
-        "Id": 2,
-        "Tipo": 2,
-        "Descripcion": "A qué hora prefieres ver a Juan?",
-        "Obv": "en otra sesión como esta",
-        "Icon": null,
-        "Opciones": [
+        Id: 2,
+        Tipo: 2,
+        Descripcion: "A qué hora prefieres ver a Juan?",
+        Obv: "en otra sesión como esta",
+        Icon: null,
+        Opciones: [
           {
-            "Id": 3,
-            "IdPregunta": 2,
-            "Orden": 1,
-            "Status": "Activo",
-            "Icon": null,
-            "Descripcion": "En la Mañana",
-            "Valor": 1,
-            "Obv": null
+            Id: 3,
+            IdPregunta: 2,
+            Orden: 1,
+            Status: "Activo",
+            Icon: null,
+            Descripcion: "En la Mañana",
+            Valor: 1,
+            Obv: null
           },
           {
-            "Id": 4,
-            "IdPregunta": 2,
-            "Orden": 2,
-            "Status": "Activo",
-            "Icon": null,
-            "Descripcion": "En la tarde",
-            "Valor": 1,
-            "Obv": null
+            Id: 4,
+            IdPregunta: 2,
+            Orden: 2,
+            Status: "Activo",
+            Icon: null,
+            Descripcion: "En la tarde",
+            Valor: 1,
+            Obv: null
           },
           {
-            "Id": 5,
-            "IdPregunta": 2,
-            "Orden": 3,
-            "Status": "Activo",
-            "Icon": null,
-            "Descripcion": "En la Noche",
-            "Valor": 1,
-            "Obv": null
+            Id: 5,
+            IdPregunta: 2,
+            Orden: 3,
+            Status: "Activo",
+            Icon: null,
+            Descripcion: "En la Noche",
+            Valor: 1,
+            Obv: null
           }
         ]
       }
-    ]
+    ];
 
-
-
-    socket.emit('pregunta', MiPregunta);
-
-
+    socket.emit("pregunta", MiPregunta);
   }
-
-
-
-
-
 
   async setpregunta(Pregunta) {
     var axdata = await axios({
@@ -149,11 +124,11 @@ export default class Modulo extends React.PureComponent {
 
         variables: {
           Reg: {
-            "IdPregunta": 2,
-            "FbId": 5589,
-            "Respuesta": 3,
-            "Abierta": "abierta",
-            "Obv": "see"
+            IdPregunta: 2,
+            FbId: 5589,
+            Respuesta: 3,
+            Abierta: "abierta",
+            Obv: "see"
           }
         }
       }
@@ -164,20 +139,17 @@ export default class Modulo extends React.PureComponent {
     this.setState({ Mood: mood });
   }
 
-
-
   render() {
     return (
       <div>
         Juan Solo - Mis 30
-
         {/*
 
     */}
         <cssfibo.Box css={{ width: "34px" }}>
           <cssfibo.Boton2
             onClick={() => {
-              this.setmood(1);
+              this.setpreguntasimple(1);
             }}
             css={{
               fontSize: 9,

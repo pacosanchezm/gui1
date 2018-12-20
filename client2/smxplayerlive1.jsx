@@ -12,12 +12,6 @@ import ReactPlayer from "react-player";
 
 import openSocket from "socket.io-client";
 
-
-
-
-
-
-
 //-----------------------------------------------------
 
 const socket = openSocket("//smxai.net");
@@ -50,13 +44,6 @@ export default class Modulo extends React.PureComponent {
         { Cat: "Rechazado", Color: "Red" }
       ]
     };
-
-
-    EscuchaEncuesta((Data) => )
-
-
-
-
   } // ------------------------- Constructor
 
   QueryChanged(event) {
