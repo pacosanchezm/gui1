@@ -16,6 +16,18 @@ import openSocket from "socket.io-client";
 
 const socket = openSocket("//smxai.net");
 
+
+socket.on('pregunta', (data) => {
+
+  console.log('respuesta2: ' + JSON.stringify(data))
+
+  
+});
+
+
+
+
+
 export default class Modulo extends React.PureComponent {
   constructor(props) {
     super(props);
