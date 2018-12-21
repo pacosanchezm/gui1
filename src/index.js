@@ -7,6 +7,8 @@ import Reloj from "./reloj.jsx";
 //import DashMain from "../client2/dashmain1";
 //import Movs from "../eai_ui/movimientos.jsx";
 import Player from "../client2/smxplayerlive1.jsx";
+import Player2 from "../client2/smxplayerlive2.jsx";
+
 import Preguntas from "../client2/livepreguntas.jsx";
 
 const rootElement = document.getElementById("root");
@@ -44,7 +46,7 @@ if (torender == 3) {
 
 if (torender == 4) {
   ReactDOM.render(
-    <Player usr={usr} page={page} id={id} opt={opt} />,
+    <Player2 usr={usr} page={page} id={id} opt={opt} />,
     rootElement
   );
 }
