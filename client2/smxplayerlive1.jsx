@@ -23,27 +23,6 @@ let Micolor = true;
 
 
 
-
-
-
-let PreguntaActiva = [
-  {
-    Id: 2,
-    Tipo: 2,
-    Descripcion: "A qué hora prefieres ver a Juan?",
-    Obv: "en otra sesión como esta",
-    Icon: null,
-    Opciones: []
-  }
-];
-
-
-
-socket.on('pregunta', (data) => {
-  console.log('pregunta recibida: ' + JSON.stringify(data))
-  PreguntaActiva = data
-});
-
 const LoadingSpinner = () => (
   <div>
     <cssx.h3> No Hay Pregunta activa</cssx.h3>
@@ -178,24 +157,6 @@ const Listado1 = (props) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export default class Modulo extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -228,6 +189,18 @@ export default class Modulo extends React.PureComponent {
       ]
     };
   } // ------------------------- Constructor
+
+
+
+  componentDidMount(){
+
+    socket.on('pregunta', (data) => {
+      console.log('pregunta recibida: ' + JSON.stringify(data))
+      this.setState({Pregunta: data})
+    })
+
+  }
+
 
   QueryChanged(event) {
     this.setState({ Mensaje: event.target.value });
@@ -306,6 +279,8 @@ export default class Modulo extends React.PureComponent {
 
     //this.setState({ Mood: mood });
   }
+
+//--------------------------------------------------------------------
 
   render() {
     return (
@@ -392,6 +367,8 @@ export default class Modulo extends React.PureComponent {
             5
           </cssfibo.Boton2>
         </cssfibo.Box>
+
+
         <cssfibo.MyFlex3 css={{ gridArea: "contenido" }}>
           <ThemeProvider theme={theme3.forma}>
             <div>
@@ -422,23 +399,20 @@ export default class Modulo extends React.PureComponent {
 
 
         <cssfibo.MyFlex3 css={{ gridArea: 'contenido' }}>
-
           <ThemeProvider theme={theme3.forma}>
 
             <div>
-     
-                <Listado1
+
+              <Listado1
                 Theme={theme3.encabezado}
-                Registros={PreguntaActiva[0]}
+                Registros={this.state.Pregunta[0]}
               />
-              
+
             </div>
 
           </ThemeProvider>
 
         </cssfibo.MyFlex3>
-
-
 
 
 
