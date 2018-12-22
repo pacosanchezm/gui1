@@ -14,10 +14,9 @@ import openSocket from "socket.io-client";
 
 //-----------------------------------------------------
 
-// const socket = openSocket("//smxai.net");
+const socket = openSocket("//smxai.net", { transports: ['polling']});
 
-var socket = openSocket({transports: ['polling'],
-secure: true});
+//var socket = openSocket("//smxai.net", {transports: ['polling'], secure: true});
 
 
 let Micolor = true;
@@ -41,7 +40,7 @@ let PreguntaActiva = [
 
 
 socket.on('pregunta', (data) => {
-  console.log('pregunta recibidaa: ' + JSON.stringify(data))
+  console.log('pregunta recibida: ' + JSON.stringify(data))
   PreguntaActiva = data
 });
 
@@ -429,8 +428,8 @@ export default class Modulo extends React.PureComponent {
             <div>
      
                 <Listado1
-                  Theme={theme3.encabezado}
-                  Registros={this.state.Pregunta[0]}
+                Theme={theme3.encabezado}
+                Registros={PreguntaActiva[0]}
               />
               
             </div>
