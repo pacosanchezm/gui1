@@ -12,11 +12,29 @@ import openSocket from "socket.io-client";
 
 //-------------------------------
 
-const socket = openSocket("//smxai.net");
 
-socket.on("pregunta", data => {
-  console.log("pregunta recibida:" + JSON.stringify(data));
-});
+
+
+// const socket = openSocket("//smxai.net");
+
+var socket = openSocket({transports: ['polling'],
+secure: true});
+
+
+
+
+// socket.on("pregunta", data => {
+//   console.log("pregunta recibida:" + JSON.stringify(data));
+// });
+
+
+
+
+
+
+
+
+
 
 export default class Modulo extends React.PureComponent {
   constructor(props) {

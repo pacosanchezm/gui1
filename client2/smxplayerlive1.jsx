@@ -14,14 +14,20 @@ import openSocket from "socket.io-client";
 
 //-----------------------------------------------------
 
-const socket = openSocket("//smxai.net");
+// const socket = openSocket("//smxai.net");
+
+var socket = openSocket({transports: ['polling'],
+secure: true});
+
+
+
+
 
 
 socket.on('pregunta', (data) => {
 
-  console.log('respuesta2: ' + JSON.stringify(data))
+  console.log('pregunta recibida: ' + JSON.stringify(data))
 
-  
 });
 
 
