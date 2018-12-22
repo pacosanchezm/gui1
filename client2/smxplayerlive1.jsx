@@ -14,14 +14,11 @@ import openSocket from "socket.io-client";
 
 //-----------------------------------------------------
 
-const socket = openSocket("//smxai.net", { transports: ['polling']});
+const socket = openSocket("//smxai.net", { transports: ["polling"] });
 
 //var socket = openSocket("//smxai.net", {transports: ['polling'], secure: true});
 
-
 let Micolor = true;
-
-
 
 const LoadingSpinner = () => (
   <div>
@@ -29,133 +26,66 @@ const LoadingSpinner = () => (
   </div>
 );
 
-
-
-
-
-
-
-
-
-
-const Listado1 = (props) => {
-
+const Listado1 = props => {
   try {
+    const { children } = props;
 
-    const { children } = props
+    const MiTitulo = (
 
+      <div>
+        <cssx.h3>{props.Registros.Descripcion}</cssx.h3>
+      </div>
 
+    );
 
-
-    const MiEncabezado = (props) => {
-
-      return (
-
-
-        <ThemeProvider theme={props.Theme}>
-          <div>
-
-
-          Encabezado
-
-
-          </div>
-        </ThemeProvider>
-      )
-
-
-    }
-
-
-
-
-
-
-
-
-
-
-    const Renglon1 = (props) => {
-
-      let BgColor
-      if (props.RenglonColor === false) { BgColor = 'White' }
-      if (props.RenglonColor === true) { BgColor = 'WhiteSmoke' }
+    const Renglon1 = props => {
+      let BgColor;
+      if (props.RenglonColor === false) {
+        BgColor = "White";
+      }
+      if (props.RenglonColor === true) {
+        BgColor = "WhiteSmoke";
+      }
 
       return (
-
         <ThemeProvider theme={props.Theme}>
           <div>
-
             <cssfibo.MyFlex1 css={{ backgroundColor: BgColor }}>
-
-              <cssx.box3label css={{ width: '110px' }}>
+              <cssx.box3label css={{ width: "34px" }}>
                 <cssx.h3 css={{ fontSize: 8 }}>{props.Row.Orden}</cssx.h3>
               </cssx.box3label>
 
-
-              <cssx.box3label css={{ width: '144px' }}>
+              <cssx.box3label css={{ width: "144px" }}>
                 <cssx.h3>{props.Row.Descripcion}</cssx.h3>
               </cssx.box3label>
-
-
-
             </cssfibo.MyFlex1>
-
           </div>
         </ThemeProvider>
+      );
+    };
 
-      )
-
-    }
-
-
-    let MiMapa = props.Registros.Opciones.map((row) => {
-
+    let MiMapa = props.Registros.Opciones.map(row => {
       return (
-
         <div>
-
-          <Renglon1
-            RenglonColor={Micolor}
-            Row={row}
-            Theme={theme3.renglon}
-          >
-
-          </Renglon1>
+          <Renglon1 RenglonColor={Micolor} Row={row} Theme={theme3.renglon} />
 
           {(() => {
-
             Micolor = !Micolor;
-
-
           })()}
-
         </div>
-
-      )
-    })
+      );
+    });
 
     return (
       <div>
-        {MiEncabezado}
+        {MiTitulo}
         {MiMapa}
       </div>
-    )
-
-
-
+    );
   } catch (e) {
     console.error(e);
   }
-}
-
-
-
-
-
-
-
-
+};
 
 export default class Modulo extends React.PureComponent {
   constructor(props) {
@@ -174,8 +104,16 @@ export default class Modulo extends React.PureComponent {
 
       Resultado: [],
 
-      Pregunta: PreguntaActiva,
-
+      Pregunta: [
+        {
+          Id: 0,
+          Tipo: 0,
+          Descripcion: "No hay una pregunta activa",
+          Obv: "---",
+          Icon: null,
+          Opciones: []
+        }
+      ],
 
       ChartData1: {},
 
@@ -190,17 +128,12 @@ export default class Modulo extends React.PureComponent {
     };
   } // ------------------------- Constructor
 
-
-
-  componentDidMount(){
-
-    socket.on('pregunta', (data) => {
-      console.log('pregunta recibida: ' + JSON.stringify(data))
-      this.setState({Pregunta: data})
-    })
-
+  componentDidMount() {
+    socket.on("pregunta", data => {
+      console.log("pregunta recibida: " + JSON.stringify(data));
+      this.setState({ Pregunta: data });
+    });
   }
-
 
   QueryChanged(event) {
     this.setState({ Mensaje: event.target.value });
@@ -280,7 +213,7 @@ export default class Modulo extends React.PureComponent {
     //this.setState({ Mood: mood });
   }
 
-//--------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   render() {
     return (
@@ -367,8 +300,6 @@ export default class Modulo extends React.PureComponent {
             5
           </cssfibo.Boton2>
         </cssfibo.Box>
-
-
         <cssfibo.MyFlex3 css={{ gridArea: "contenido" }}>
           <ThemeProvider theme={theme3.forma}>
             <div>
@@ -397,25 +328,16 @@ export default class Modulo extends React.PureComponent {
           </ThemeProvider>
         </cssfibo.MyFlex3>
 
-
-        <cssfibo.MyFlex3 css={{ gridArea: 'contenido' }}>
+        <cssfibo.MyFlex3 css={{ gridArea: "contenido" }}>
           <ThemeProvider theme={theme3.forma}>
-
             <div>
-
               <Listado1
-                Theme={theme3.encabezado}
-                Registros={this.state.Pregunta[0]}
+              Theme={theme3.encabezado}
+              Registros={this.state.Pregunta[0]}
               />
-
             </div>
-
           </ThemeProvider>
-
         </cssfibo.MyFlex3>
-
-
-
 
       </div>
     );
