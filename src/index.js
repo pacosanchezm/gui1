@@ -7,7 +7,6 @@ import Reloj from "./reloj.jsx";
 //import DashMain from "../client2/dashmain1";
 //import Movs from "../eai_ui/movimientos.jsx";
 import Player from "../client2/smxplayerlive1.jsx";
-import Player2 from "../client2/smxplayerlive2.jsx";
 
 import Preguntas from "../client2/livepreguntas.jsx";
 
