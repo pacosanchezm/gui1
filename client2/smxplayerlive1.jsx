@@ -20,15 +20,178 @@ var socket = openSocket({transports: ['polling'],
 secure: true});
 
 
+let Micolor = true;
 
+
+
+
+
+
+let PreguntaActiva = [
+  {
+    Id: 2,
+    Tipo: 2,
+    Descripcion: "A qué hora prefieres ver a Juan?",
+    Obv: "en otra sesión como esta",
+    Icon: null,
+    Opciones: []
+  }
+];
 
 
 
 socket.on('pregunta', (data) => {
-
-  console.log('pregunta recibida: ' + JSON.stringify(data))
-
+  console.log('pregunta recibidaa: ' + JSON.stringify(data))
+  PreguntaActiva = data
 });
+
+const LoadingSpinner = () => (
+  <div>
+    <cssx.h3> No Hay Pregunta activa</cssx.h3>
+  </div>
+);
+
+
+
+
+
+
+
+
+
+
+const Listado1 = (props) => {
+
+  try {
+
+    const { children } = props
+
+
+
+
+    const MiEncabezado = (props) => {
+
+      return (
+
+
+        <ThemeProvider theme={props.Theme}>
+          <div>
+
+
+          Encabezado
+
+
+          </div>
+        </ThemeProvider>
+      )
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+    const Renglon1 = (props) => {
+
+      let BgColor
+      if (props.RenglonColor === false) { BgColor = 'White' }
+      if (props.RenglonColor === true) { BgColor = 'WhiteSmoke' }
+
+      return (
+
+        <ThemeProvider theme={props.Theme}>
+          <div>
+
+            <cssfibo.MyFlex1 css={{ backgroundColor: BgColor }}>
+
+              <cssx.box3label css={{ width: '110px' }}>
+                <cssx.h3 css={{ fontSize: 8 }}>{props.Row.Orden}</cssx.h3>
+              </cssx.box3label>
+
+
+              <cssx.box3label css={{ width: '144px' }}>
+                <cssx.h3>{props.Row.Descripcion}</cssx.h3>
+              </cssx.box3label>
+
+
+
+            </cssfibo.MyFlex1>
+
+          </div>
+        </ThemeProvider>
+
+      )
+
+    }
+
+
+    let MiMapa = props.Registros.Opciones.map((row) => {
+
+      return (
+
+        <div>
+
+          <Renglon1
+            RenglonColor={Micolor}
+            Row={row}
+            Theme={theme3.renglon}
+          >
+
+          </Renglon1>
+
+          {(() => {
+
+            Micolor = !Micolor;
+
+
+          })()}
+
+        </div>
+
+      )
+    })
+
+    return (
+      <div>
+        {MiEncabezado}
+        {MiMapa}
+      </div>
+    )
+
+
+
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -50,6 +213,9 @@ export default class Modulo extends React.PureComponent {
       Mensaje: "",
 
       Resultado: [],
+
+      Pregunta: PreguntaActiva,
+
 
       ChartData1: {},
 
@@ -145,7 +311,7 @@ export default class Modulo extends React.PureComponent {
   render() {
     return (
       <div>
-        Juan Solo - Mis 30
+        Juan Solo - Mis 301
         <ReactPlayer
           ref={this.ref}
           className="react-player"
@@ -254,6 +420,30 @@ export default class Modulo extends React.PureComponent {
             </div>
           </ThemeProvider>
         </cssfibo.MyFlex3>
+
+
+        <cssfibo.MyFlex3 css={{ gridArea: 'contenido' }}>
+
+          <ThemeProvider theme={theme3.forma}>
+
+            <div>
+     
+                <Listado1
+                  Theme={theme3.encabezado}
+                  Registros={this.state.Pregunta[0]}
+              />
+              
+            </div>
+
+          </ThemeProvider>
+
+        </cssfibo.MyFlex3>
+
+
+
+
+
+
       </div>
     );
   }

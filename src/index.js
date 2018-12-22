@@ -46,7 +46,7 @@ if (torender == 3) {
 
 if (torender == 4) {
   ReactDOM.render(
-    <Player2 usr={usr} page={page} id={id} opt={opt} />,
+    <Player usr={usr} page={page} id={id} opt={opt} />,
     rootElement
   );
 }
