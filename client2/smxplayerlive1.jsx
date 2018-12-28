@@ -10,13 +10,24 @@ import * as cssfibo from "../css/fibo1";
 import axios from "axios";
 import ReactPlayer from "react-player";
 
-import openSocket from "socket.io-client";
+//import openSocket from "socket.io-client";
 
 //-----------------------------------------------------
 
-const socket = openSocket("//smxai.net", { transports: ["polling"] });
-
+// const socket = openSocket();
+// const socket = openSocket({transports: ['polling']});
 //var socket = openSocket("//smxai.net", {transports: ['polling'], secure: true});
+
+
+
+
+// var es = new EventSource('https://smxai.net/liveplayer1/channel/sysInfo');
+
+var EsPregunta = new EventSource('https://smxai.net/liveplayer1/channel/pregunta');
+
+
+
+
 
 let Micolor = true;
 
@@ -129,10 +140,38 @@ export default class Modulo extends React.PureComponent {
   } // ------------------------- Constructor
 
   componentDidMount() {
-    socket.on("pregunta", data => {
-      console.log("pregunta recibida: " + JSON.stringify(data));
-      this.setState({ Pregunta: data });
-    });
+
+    // socket.on("pregunta", data => {
+    //   console.log("pregunta recibida: " + JSON.stringify(data));
+    //   this.setState({ Pregunta: data });
+    // });
+
+
+    // es.onmessage = function(e) {
+    //     console.log(JSON.parse(e.data))
+    //     this.setState({ Pregunta: JSON.parse(e.data) })
+    // };
+
+
+
+    // es.onmessage = (e) => {
+    //     console.log(JSON.parse(e.data))
+    //     this.setState({ Pregunta: JSON.parse(e.data) })
+    // };
+
+
+    EsPregunta.onmessage = (e) => {
+        console.log(JSON.parse(e.data))
+        this.setState({ Pregunta: JSON.parse(e.data) })
+    };
+
+
+
+
+
+
+
+
   }
 
   QueryChanged(event) {
@@ -334,6 +373,7 @@ export default class Modulo extends React.PureComponent {
               <Listado1
               Theme={theme3.encabezado}
               Registros={this.state.Pregunta[0]}
+              FbId={this.props.page}
               />
             </div>
           </ThemeProvider>
