@@ -23,7 +23,7 @@ import ReactPlayer from "react-player";
 
 // var es = new EventSource('https://smxai.net/liveplayer1/channel/sysInfo');
 
-var EsPregunta = new EventSource('https://smxai.net/liveplayer1/channel/pregunta');
+var EsPregunta = new EventSource('https://smxai.net/liveplayer1/channel/pregunta', { withCredentials: true });
 
 
 

@@ -3,12 +3,12 @@ import ReactDOM from "react-dom";
 
 import Reloj from "./reloj.jsx";
 
-//import Dash1 from "../client2/dash1";
-//import DashMain from "../client2/dashmain1";
+import Dash1 from "../client2/dash1";
+import DashMain from "../client2/dashmain1";
 //import Movs from "../eai_ui/movimientos.jsx";
 import Player from "../client2/smxplayerlive1.jsx";
 
-import Preguntas from "../client2/livepreguntas.jsx";
+//import Preguntas from "../client2/livepreguntas.jsx";
 
 const rootElement = document.getElementById("root");
 
