@@ -10,24 +10,9 @@ import * as cssfibo from "../css/fibo1";
 import axios from "axios";
 import ReactPlayer from "react-player";
 
-//import openSocket from "socket.io-client";
-
 //-----------------------------------------------------
 
-// const socket = openSocket();
-// const socket = openSocket({transports: ['polling']});
-//var socket = openSocket("//smxai.net", {transports: ['polling'], secure: true});
-
-
-
-
-// var es = new EventSource('https://smxai.net/liveplayer1/channel/sysInfo');
-
-var EsPregunta = new EventSource('https://smxai.net/liveplayer1/channel/pregunta', { withCredentials: true });
-
-
-
-
+//var EsPregunta = new EventSource( "https://smxai.net/liveplayer1/channel/pregunta", { withCredentials: true } );
 
 let Micolor = true;
 
@@ -42,12 +27,11 @@ const Listado1 = props => {
     const { children } = props;
 
     const MiTitulo = (
-
       <div>
         <cssx.h3>{props.Registros.Descripcion}</cssx.h3>
       </div>
-
     );
+
 
     const Renglon1 = props => {
       let BgColor;
@@ -61,24 +45,35 @@ const Listado1 = props => {
       return (
         <ThemeProvider theme={props.Theme}>
           <div>
-            <cssfibo.MyFlex1 css={{ backgroundColor: BgColor }}>
-              <cssx.box3label css={{ width: "34px" }}>
-                <cssx.h3 css={{ fontSize: 8 }}>{props.Row.Orden}</cssx.h3>
-              </cssx.box3label>
 
-              <cssx.box3label css={{ width: "144px" }}>
-                <cssx.h3>{props.Row.Descripcion}</cssx.h3>
-              </cssx.box3label>
-            </cssfibo.MyFlex1>
+            <cssfibo.Boton1 css={{ width: '144px' }}
+              class="noatiende"
+              color={"grey"}
+              onClick={() => {
+                console.log("click" + props.Row.Id);
+                props.This.RespuestaC(props.FbId, props.Row.IdPregunta, props.Row.Id)
+              }}
+            >
+              {props.Row.Descripcion}
+            </cssfibo.Boton1>
+
+
           </div>
         </ThemeProvider>
       );
     };
 
+
     let MiMapa = props.Registros.Opciones.map(row => {
       return (
         <div>
-          <Renglon1 RenglonColor={Micolor} Row={row} Theme={theme3.renglon} />
+          <Renglon1
+            RenglonColor={Micolor}
+            Row={row}
+            Theme={theme3.renglon}
+            This={props.This}
+            FbId={props.FbId}
+          />
 
           {(() => {
             Micolor = !Micolor;
@@ -122,9 +117,56 @@ export default class Modulo extends React.PureComponent {
           Descripcion: "No hay una pregunta activa",
           Obv: "---",
           Icon: null,
-          Opciones: []
+          Opciones: [
+            {
+              "Id": 3,
+              "IdPregunta": 2,
+              "Orden": 1,
+              "Status": "Activo",
+              "Icon": null,
+              "Descripcion": "En la Mañana",
+              "Valor": 1,
+              "Obv": null
+            },
+            {
+              "Id": 4,
+              "IdPregunta": 2,
+              "Orden": 2,
+              "Status": "Activo",
+              "Icon": null,
+              "Descripcion": "En la tarde",
+              "Valor": 1,
+              "Obv": null
+            },
+            {
+              "Id": 5,
+              "IdPregunta": 2,
+              "Orden": 3,
+              "Status": "Activo",
+              "Icon": null,
+              "Descripcion": "En la Noche",
+              "Valor": 1,
+              "Obv": null
+            }
+          ]
         }
       ],
+
+
+      Estrellas: {
+        e1: 'SlateGrey',
+        e2: 'SlateGrey',
+        e3: 'SlateGrey',
+        e4: 'SlateGrey',
+        e5: 'SlateGrey',
+        },
+
+
+
+
+
+
+
 
       ChartData1: {},
 
@@ -140,38 +182,10 @@ export default class Modulo extends React.PureComponent {
   } // ------------------------- Constructor
 
   componentDidMount() {
-
-    // socket.on("pregunta", data => {
-    //   console.log("pregunta recibida: " + JSON.stringify(data));
-    //   this.setState({ Pregunta: data });
-    // });
-
-
-    // es.onmessage = function(e) {
-    //     console.log(JSON.parse(e.data))
-    //     this.setState({ Pregunta: JSON.parse(e.data) })
-    // };
-
-
-
-    // es.onmessage = (e) => {
-    //     console.log(JSON.parse(e.data))
-    //     this.setState({ Pregunta: JSON.parse(e.data) })
-    // };
-
-
-    EsPregunta.onmessage = (e) => {
-        console.log(JSON.parse(e.data))
-        this.setState({ Pregunta: JSON.parse(e.data) })
-    };
-
-
-
-
-
-
-
-
+  //  EsPregunta.onmessage = e => {
+  //    console.log(JSON.parse(e.data));
+  //    this.setState({ Pregunta: JSON.parse(e.data) });
+  //  };
   }
 
   QueryChanged(event) {
@@ -216,7 +230,24 @@ export default class Modulo extends React.PureComponent {
 
     let resultado = axdatachart.data.data.MoodC;
 
-    this.setState({ Mood: mood });
+    let MiEstrella = {}
+
+    if (mood >= 1) { MiEstrella.e1 = 'Gold' } else { MiEstrella.e1 = 'SlateGrey' }
+    if (mood >= 2) { MiEstrella.e2 = 'Gold' } else { MiEstrella.e2 = 'SlateGrey'}
+    if (mood >= 3) { MiEstrella.e3 = 'Gold' } else { MiEstrella.e3 = 'SlateGrey' }
+    if (mood >= 4) { MiEstrella.e4 = 'Gold' } else { MiEstrella.e4 = 'SlateGrey' }
+    if (mood >= 5) { MiEstrella.e5 = 'Gold' } else { MiEstrella.e5 = 'SlateGrey' }
+
+
+
+     let MiEstrellax = MiEstrella.e1
+
+
+    this.setState({Estrellas: MiEstrella})
+
+
+
+    //this.setState({ Mood: mood });
   }
 
   async sendmensaje(texto) {
@@ -252,6 +283,37 @@ export default class Modulo extends React.PureComponent {
     //this.setState({ Mood: mood });
   }
 
+  RespuestaC = async (FbId, IdPregunta, RespuestaId) => {
+    var axdatachart = await axios({
+      url: "https://smxai.net/graphqlpub",
+      method: "post",
+      data: {
+        query: `
+          mutation RespuestaC($Reg: LiveRespuestaInput) {
+          RespuestaC(Reg: $Reg)
+          }
+        `,
+
+        variables: {
+          Reg: {
+            IdPregunta: IdPregunta,
+            FbId: FbId,
+            Respuesta: RespuestaId,
+            Abierta: "",
+            Obv: ""
+          }
+        }
+      }
+    });
+
+    let resultado = axdatachart.data.data.RespuestaC;
+
+    //this.setState({ Mood: mood });
+
+
+
+  }
+
   //--------------------------------------------------------------------
 
   render() {
@@ -269,7 +331,7 @@ export default class Modulo extends React.PureComponent {
         {/*
 
     */}
-        <cssfibo.Box css={{ width: "34px" }}>
+        <cssfibo.Box css={{ width: "233px" }}>
           <cssfibo.Boton2
             onClick={() => {
               this.setmood(1);
@@ -277,13 +339,15 @@ export default class Modulo extends React.PureComponent {
             css={{
               fontSize: 9,
               color: "White",
-              backgroundColor: "SlateGray"
+              backgroundColor: this.state.Estrellas.e1,
+              width: "34px",
+              height: "34px",
+              margin: '3px'
             }}
           >
             1
           </cssfibo.Boton2>
-        </cssfibo.Box>
-        <cssfibo.Box css={{ width: "34px" }}>
+
           <cssfibo.Boton2
             onClick={() => {
               this.setmood(2);
@@ -291,13 +355,15 @@ export default class Modulo extends React.PureComponent {
             css={{
               fontSize: 9,
               color: "White",
-              backgroundColor: "SlateGray"
+              backgroundColor: this.state.Estrellas.e2,
+              width: "34px",
+              height: "34px",
+              margin: '3px'
             }}
           >
             2
           </cssfibo.Boton2>
-        </cssfibo.Box>
-        <cssfibo.Box css={{ width: "34px" }}>
+
           <cssfibo.Boton2
             onClick={() => {
               this.setmood(3);
@@ -305,13 +371,16 @@ export default class Modulo extends React.PureComponent {
             css={{
               fontSize: 9,
               color: "White",
-              backgroundColor: "SlateGray"
+              backgroundColor: this.state.Estrellas.e3,
+              width: "34px",
+              height: "34px",
+              margin: '3px'
             }}
           >
             3
           </cssfibo.Boton2>
-        </cssfibo.Box>
-        <cssfibo.Box css={{ width: "34px" }}>
+
+
           <cssfibo.Boton2
             onClick={() => {
               this.setmood(4);
@@ -319,13 +388,16 @@ export default class Modulo extends React.PureComponent {
             css={{
               fontSize: 9,
               color: "White",
-              backgroundColor: "SlateGray"
+              backgroundColor: this.state.Estrellas.e4,
+              width: "34px",
+              height: "34px",
+              margin: '3px'
             }}
           >
             4
           </cssfibo.Boton2>
-        </cssfibo.Box>
-        <cssfibo.Box css={{ width: "34px" }}>
+
+
           <cssfibo.Boton2
             onClick={() => {
               this.setmood(5);
@@ -333,18 +405,25 @@ export default class Modulo extends React.PureComponent {
             css={{
               fontSize: 9,
               color: "White",
-              backgroundColor: "SlateGray"
+              backgroundColor: this.state.Estrellas.e5,
+              width: "34px",
+              height: "34px",
+              margin: '3px'
             }}
           >
             5
           </cssfibo.Boton2>
+
         </cssfibo.Box>
+
+
+
         <cssfibo.MyFlex3 css={{ gridArea: "contenido" }}>
           <ThemeProvider theme={theme3.forma}>
             <div>
               <cssfibo.MyFlexR1>
-                <cssx.box3input>
-                  <cssx.input3
+                <cssx.box3input css={{ width: '377px' }}>
+                  <cssx.input3 css={{ width: '377px' }}
                     theme={theme3.forma}
                     name="Nombre"
                     value={this.state.Mensaje}
@@ -366,19 +445,18 @@ export default class Modulo extends React.PureComponent {
             </div>
           </ThemeProvider>
         </cssfibo.MyFlex3>
-
         <cssfibo.MyFlex3 css={{ gridArea: "contenido" }}>
           <ThemeProvider theme={theme3.forma}>
             <div>
               <Listado1
-              Theme={theme3.encabezado}
-              Registros={this.state.Pregunta[0]}
-              FbId={this.props.page}
+                Theme={theme3.encabezado}
+                Registros={this.state.Pregunta[0]}
+                FbId={this.props.page}
+                This={this}
               />
             </div>
           </ThemeProvider>
         </cssfibo.MyFlex3>
-
       </div>
     );
   }
