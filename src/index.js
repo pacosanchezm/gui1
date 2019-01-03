@@ -12,7 +12,7 @@ import Player from "../client2/smxplayerlive1.jsx";
 
 const rootElement = document.getElementById("root");
 
-let torender = 4;
+let torender = 1;
 
 //let usr = 1309103235803674; //paco
 

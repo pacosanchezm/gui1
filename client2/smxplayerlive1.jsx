@@ -32,7 +32,6 @@ const Listado1 = props => {
       </div>
     );
 
-
     const Renglon1 = props => {
       let BgColor;
       if (props.RenglonColor === false) {
@@ -45,24 +44,25 @@ const Listado1 = props => {
       return (
         <ThemeProvider theme={props.Theme}>
           <div>
-
-            <cssfibo.Boton1 css={{ width: '144px' }}
+            <cssfibo.Boton1
+              css={{ width: "144px" }}
               class="noatiende"
               color={"grey"}
               onClick={() => {
                 console.log("click" + props.Row.Id);
-                props.This.RespuestaC(props.FbId, props.Row.IdPregunta, props.Row.Id)
+                props.This.RespuestaC(
+                  props.FbId,
+                  props.Row.IdPregunta,
+                  props.Row.Id
+                );
               }}
             >
               {props.Row.Descripcion}
             </cssfibo.Boton1>
-
-
           </div>
         </ThemeProvider>
       );
     };
-
 
     let MiMapa = props.Registros.Opciones.map(row => {
       return (
@@ -119,54 +119,46 @@ export default class Modulo extends React.PureComponent {
           Icon: null,
           Opciones: [
             {
-              "Id": 3,
-              "IdPregunta": 2,
-              "Orden": 1,
-              "Status": "Activo",
-              "Icon": null,
-              "Descripcion": "En la Mañana",
-              "Valor": 1,
-              "Obv": null
+              Id: 3,
+              IdPregunta: 2,
+              Orden: 1,
+              Status: "Activo",
+              Icon: null,
+              Descripcion: "En la Mañana",
+              Valor: 1,
+              Obv: null
             },
             {
-              "Id": 4,
-              "IdPregunta": 2,
-              "Orden": 2,
-              "Status": "Activo",
-              "Icon": null,
-              "Descripcion": "En la tarde",
-              "Valor": 1,
-              "Obv": null
+              Id: 4,
+              IdPregunta: 2,
+              Orden: 2,
+              Status: "Activo",
+              Icon: null,
+              Descripcion: "En la tarde",
+              Valor: 1,
+              Obv: null
             },
             {
-              "Id": 5,
-              "IdPregunta": 2,
-              "Orden": 3,
-              "Status": "Activo",
-              "Icon": null,
-              "Descripcion": "En la Noche",
-              "Valor": 1,
-              "Obv": null
+              Id: 5,
+              IdPregunta: 2,
+              Orden: 3,
+              Status: "Activo",
+              Icon: null,
+              Descripcion: "En la Noche",
+              Valor: 1,
+              Obv: null
             }
           ]
         }
       ],
 
-
       Estrellas: {
-        e1: 'SlateGrey',
-        e2: 'SlateGrey',
-        e3: 'SlateGrey',
-        e4: 'SlateGrey',
-        e5: 'SlateGrey',
-        },
-
-
-
-
-
-
-
+        e1: "SlateGrey",
+        e2: "SlateGrey",
+        e3: "SlateGrey",
+        e4: "SlateGrey",
+        e5: "SlateGrey"
+      },
 
       ChartData1: {},
 
@@ -182,10 +174,10 @@ export default class Modulo extends React.PureComponent {
   } // ------------------------- Constructor
 
   componentDidMount() {
-  //  EsPregunta.onmessage = e => {
-  //    console.log(JSON.parse(e.data));
-  //    this.setState({ Pregunta: JSON.parse(e.data) });
-  //  };
+    //  EsPregunta.onmessage = e => {
+    //    console.log(JSON.parse(e.data));
+    //    this.setState({ Pregunta: JSON.parse(e.data) });
+    //  };
   }
 
   QueryChanged(event) {
@@ -230,22 +222,37 @@ export default class Modulo extends React.PureComponent {
 
     let resultado = axdatachart.data.data.MoodC;
 
-    let MiEstrella = {}
+    let MiEstrella = {};
 
-    if (mood >= 1) { MiEstrella.e1 = 'Gold' } else { MiEstrella.e1 = 'SlateGrey' }
-    if (mood >= 2) { MiEstrella.e2 = 'Gold' } else { MiEstrella.e2 = 'SlateGrey'}
-    if (mood >= 3) { MiEstrella.e3 = 'Gold' } else { MiEstrella.e3 = 'SlateGrey' }
-    if (mood >= 4) { MiEstrella.e4 = 'Gold' } else { MiEstrella.e4 = 'SlateGrey' }
-    if (mood >= 5) { MiEstrella.e5 = 'Gold' } else { MiEstrella.e5 = 'SlateGrey' }
+    if (mood >= 1) {
+      MiEstrella.e1 = "Gold";
+    } else {
+      MiEstrella.e1 = "SlateGrey";
+    }
+    if (mood >= 2) {
+      MiEstrella.e2 = "Gold";
+    } else {
+      MiEstrella.e2 = "SlateGrey";
+    }
+    if (mood >= 3) {
+      MiEstrella.e3 = "Gold";
+    } else {
+      MiEstrella.e3 = "SlateGrey";
+    }
+    if (mood >= 4) {
+      MiEstrella.e4 = "Gold";
+    } else {
+      MiEstrella.e4 = "SlateGrey";
+    }
+    if (mood >= 5) {
+      MiEstrella.e5 = "Gold";
+    } else {
+      MiEstrella.e5 = "SlateGrey";
+    }
 
+    let MiEstrellax = MiEstrella.e1;
 
-
-     let MiEstrellax = MiEstrella.e1
-
-
-    this.setState({Estrellas: MiEstrella})
-
-
+    this.setState({ Estrellas: MiEstrella });
 
     //this.setState({ Mood: mood });
   }
@@ -309,10 +316,7 @@ export default class Modulo extends React.PureComponent {
     let resultado = axdatachart.data.data.RespuestaC;
 
     //this.setState({ Mood: mood });
-
-
-
-  }
+  };
 
   //--------------------------------------------------------------------
 
@@ -342,7 +346,7 @@ export default class Modulo extends React.PureComponent {
               backgroundColor: this.state.Estrellas.e1,
               width: "34px",
               height: "34px",
-              margin: '3px'
+              margin: "3px"
             }}
           >
             1
@@ -358,7 +362,7 @@ export default class Modulo extends React.PureComponent {
               backgroundColor: this.state.Estrellas.e2,
               width: "34px",
               height: "34px",
-              margin: '3px'
+              margin: "3px"
             }}
           >
             2
@@ -374,12 +378,11 @@ export default class Modulo extends React.PureComponent {
               backgroundColor: this.state.Estrellas.e3,
               width: "34px",
               height: "34px",
-              margin: '3px'
+              margin: "3px"
             }}
           >
             3
           </cssfibo.Boton2>
-
 
           <cssfibo.Boton2
             onClick={() => {
@@ -391,12 +394,11 @@ export default class Modulo extends React.PureComponent {
               backgroundColor: this.state.Estrellas.e4,
               width: "34px",
               height: "34px",
-              margin: '3px'
+              margin: "3px"
             }}
           >
             4
           </cssfibo.Boton2>
-
 
           <cssfibo.Boton2
             onClick={() => {
@@ -408,22 +410,19 @@ export default class Modulo extends React.PureComponent {
               backgroundColor: this.state.Estrellas.e5,
               width: "34px",
               height: "34px",
-              margin: '3px'
+              margin: "3px"
             }}
           >
             5
           </cssfibo.Boton2>
-
         </cssfibo.Box>
-
-
-
         <cssfibo.MyFlex3 css={{ gridArea: "contenido" }}>
           <ThemeProvider theme={theme3.forma}>
             <div>
               <cssfibo.MyFlexR1>
-                <cssx.box3input css={{ width: '377px' }}>
-                  <cssx.input3 css={{ width: '377px' }}
+                <cssx.box3input css={{ width: "377px" }}>
+                  <cssx.input3
+                    css={{ width: "377px" }}
                     theme={theme3.forma}
                     name="Nombre"
                     value={this.state.Mensaje}
