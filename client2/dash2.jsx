@@ -151,6 +151,7 @@ export default class Modulo extends React.PureComponent {
       }
     });
 
+
     let resultado2 = axdatachart.data.data.LivePreguntaId;
     this.setState({ Resultado2: resultado2 });
     this.setState({ChartData2: ChartData4(resultado2[0].Opciones)});
