@@ -10,54 +10,25 @@ import axios from "axios";
 
 import { Bar, Pie } from "react-chartjs-2";
 
-import _ from "lodash";
-import chain from "lodash/chain";
-import find from "lodash/find";
-import get from "lodash/get";
-import map from "lodash/map";
-import groupBy from "lodash/groupBy";
 
 // -----------------------------------------
 
-let ChartData3 = (MiArray, ChartColores, Labels) => {
+
+let ChartData4 = (MiArray) => {
   try {
-    let MiLabel = (Categoria, Labels) => {
-      let MiFiltro = Labels.filter(label => label.value == Categoria);
 
-      if (MiFiltro.length != 0) {
-        return MiFiltro[0].label;
-      } else {
-        return Categoria;
-      }
-    };
-
-    let MiColumnas1 = MiArray.map(row => {
-      let MiColumna2 = MiLabel(row.Cat, Labels);
-
-      return MiColumna2;
-    });
+    let MiColumnas1 = MiArray.map(row => row.Descripcion);
 
     let result = () => {
       let MiStatus = "Status";
-
-      let MiColor = (Categoria, Colores) => {
-        let MiFiltro = Colores.filter(color => color.Cat == Categoria);
-
-        if (MiFiltro.length != 0) {
-          return MiFiltro[0].Color;
-        } else {
-          return "#808080	";
-        }
-      };
 
       return [
         {
           stack: 0,
           label: MiStatus,
-
-          data: MiArray.map(row => row.Cantidad),
+          data: MiArray.map(row => row.Respuestas),
           borderWidth: 1,
-          backgroundColor: MiArray.map(row => MiColor(row.Cat, ChartColores))
+          backgroundColor: MiArray.map(row => row.Color)
         }
       ];
     };
@@ -70,6 +41,7 @@ let ChartData3 = (MiArray, ChartColores, Labels) => {
     console.error(e);
   }
 };
+
 
 let ChartBar1 = props => {
   return (
@@ -131,45 +103,47 @@ export default class Modulo extends React.PureComponent {
 
     this.state = {
       page: "777",
+      Resultado2: [{Descripcion:"Encuesta"}],
+      ChartData2: {},
 
-      Resultado: [],
-
-      ChartData1: {},
-
-      ChartColores: [
-        { Cat: "Enviar", Color: "Grey" },
-        { Cat: "Enviado", Color: "Blue" },
-        { Cat: "Entregado", Color: "darkgreen" },
-        { Cat: "Descartado", Color: "darkRed" },
-        { Cat: "Leido", Color: "GoldenRod" },
-        { Cat: "Rechazado", Color: "Red" },
-
-        { Cat: "En la Noche", Color: "Blue" },
-
-        { Cat: "En la Mañana", Color: "Gold" },
-        { Cat: "En la tarde", Color: "Orange" }
-      ]
     };
   } // ------------------------- Constructor
 
+
   componentWillMount() {
-    this.getdatoschart2();
+    this.getdatoschart3();
   }
 
-  getdatoschart2 = async date => {
+
+  getdatoschart3 = async date => {
     var axdatachart = await axios({
       url: "https://smxai.net/graphqlpub",
       method: "post",
       data: {
         query: `
-query LiveRespuestaX($IdPregunta: Int) {
-  LiveRespuestaX(IdPregunta: $IdPregunta) {
-    X
-    Cat
-    Cantidad
-  }
-}
-          `,
+        query LivePreguntaId($IdPregunta: Int) {
+          LivePreguntaId(IdPregunta: $IdPregunta) {
+           Id
+          Tipo
+          Descripcion
+          Obv
+          Icon
+          Opciones {
+            Id
+            IdPregunta
+            Orden
+            Status
+            Icon
+            Color
+            Descripcion
+            Valor
+            Obv
+            Respuestas
+            }
+
+          }
+          }
+      `,
 
         variables: {
           IdPregunta: 2
@@ -177,52 +151,15 @@ query LiveRespuestaX($IdPregunta: Int) {
       }
     });
 
-    let resultado = axdatachart.data.data.LiveRespuestaX;
-
-    this.setState({ Resultado: resultado });
-
-    let Labels = [];
-
-    this.setState({
-      ChartData1: ChartData3(resultado, this.state.ChartColores, Labels)
-    });
-  };
-
-  getdatoschart1 = async date => {
-    var axdatachart = await axios({
-      url: "https://smxai.net/graphqlpub",
-      method: "post",
-      data: {
-        query: `
-          query mailstatus($Campana: Int) {
-            IndMailStatusX(Campana: $Campana) {
-              Cat
-              Cantidad
-            }
-          }
-          `,
-
-        variables: {
-          Campana: 3
-        }
-      }
-    });
-
-    let resultado = axdatachart.data.data.IndMailStatusX;
-
-    this.setState({ Resultado: resultado });
-
-    let Labels = [];
-
-    this.setState({
-      ChartData1: ChartData3(resultado, this.state.ChartColores, Labels)
-    });
+    let resultado2 = axdatachart.data.data.LivePreguntaId;
+    this.setState({ Resultado2: resultado2 });
+    this.setState({ChartData2: ChartData4(resultado2[0].Opciones)});
   };
 
   render() {
     return (
       <div>
-        <ChartPie1 title={"Respuestas"} chartdata={this.state.ChartData1} />
+        <ChartPie1 title={this.state.Resultado2[0].Descripcion} chartdata={this.state.ChartData2} />
       </div>
     );
   }
