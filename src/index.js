@@ -8,11 +8,11 @@ import DashMain from "../client2/dashmain1";
 //import Movs from "../eai_ui/movimientos.jsx";
 import Player from "../client2/smxplayerlive1.jsx";
 
-//import Preguntas from "../client2/livepreguntas.jsx";
+import Preguntas from "../client2/livepreguntas.jsx";
 
 const rootElement = document.getElementById("root");
 
-let torender = 1;
+let torender = 5;
 
 //let usr = 1309103235803674; //paco
 

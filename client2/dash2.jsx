@@ -111,11 +111,11 @@ export default class Modulo extends React.PureComponent {
 
 
   componentWillMount() {
-    this.getdatoschart3();
+    this.getdatoschart3(this.props.IdPregunta);
   }
 
 
-  getdatoschart3 = async date => {
+  getdatoschart3 = async (IdPregunta) => {
     var axdatachart = await axios({
       url: "https://smxai.net/graphqlpub",
       method: "post",
@@ -124,29 +124,27 @@ export default class Modulo extends React.PureComponent {
         query LivePreguntaId($IdPregunta: Int) {
           LivePreguntaId(IdPregunta: $IdPregunta) {
            Id
-          Tipo
-          Descripcion
-          Obv
-          Icon
-          Opciones {
-            Id
-            IdPregunta
-            Orden
-            Status
-            Icon
-            Color
-            Descripcion
-            Valor
-            Obv
-            Respuestas
-            }
-
-          }
-          }
+           Tipo
+           Descripcion
+           Obv
+           Icon
+           Opciones {
+              Id
+              IdPregunta
+              Orden
+              Status
+              Icon
+              Color
+              Descripcion
+              Valor
+              Obv
+              Respuestas
+           }
+         }
+        }
       `,
-
         variables: {
-          IdPregunta: 2
+          IdPregunta: IdPregunta
         }
       }
     });
@@ -160,7 +158,10 @@ export default class Modulo extends React.PureComponent {
   render() {
     return (
       <div>
-        <ChartPie1 title={this.state.Resultado2[0].Descripcion} chartdata={this.state.ChartData2} />
+        <ChartPie1
+        title={this.state.Resultado2[0].Descripcion}
+        chartdata={this.state.ChartData2}
+       />
       </div>
     );
   }
