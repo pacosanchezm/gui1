@@ -10,10 +10,13 @@ import axios from "axios";
 
 import Dash2 from "./dash2";
 
-
-
 //-------------------------------
 
+const MiDash = props => (
+  <div>
+    <Dash2 IdPregunta={props.PreguntaActiva} />
+  </div>
+);
 
 export default class Modulo extends React.PureComponent {
   constructor(props) {
@@ -22,35 +25,25 @@ export default class Modulo extends React.PureComponent {
     this.state = {
       page: "777",
 
-      PreguntaActiva: 1,
-
+      PreguntaActiva: 1
     };
-
   } // ------------------------- Constructor
 
-  componentWillMount() {
-  }
+  componentWillMount() {}
 
-
-
-  setpregunta = async (Pregunta) => {
+  setpregunta = async Pregunta => {
     var axdata = await axios({
       url: "https://smxai.net/liveplayer1/channel/sysInfo/p1?preg=" + Pregunta,
-      method: "get",
-
+      method: "get"
     });
 
     let resultado = axdata.data;
-    console.log('resultado: ' + resultado)
+    console.log("resultado: " + resultado);
 
     this.setState({ PreguntaActiva: Pregunta });
+  };
 
-  }
-
-
-
-
-
+  refresh() {}
 
   render() {
     return (
@@ -101,24 +94,15 @@ export default class Modulo extends React.PureComponent {
             3
           </cssfibo.Boton2>
         </cssfibo.Box>
-
-
         <br />
         <br />
         <br />
         <br />
-
-
-        <Dash2
-          IdPregunta={this.state.PreguntaActiva}
+        <MiDash
+          PreguntaActiva={this.state.PreguntaActiva}
+          Refresh={this.refresh()}
         />
-
-
-
       </div>
-
-
-
     );
   }
 }

@@ -4,19 +4,16 @@ import WebviewControls from "../messenger-api-helpers/webview-controls";
 import glamorous, { ThemeProvider } from "glamorous";
 import { css } from "glamor";
 import { theme1, theme3 } from "../css/themes";
-import * as cssx from "../css/css3";
+//import * as cssx from "../css/css3";
 
 import axios from "axios";
 
 import { Bar, Pie } from "react-chartjs-2";
 
-
 // -----------------------------------------
 
-
-let ChartData4 = (MiArray) => {
+let ChartData4 = MiArray => {
   try {
-
     let MiColumnas1 = MiArray.map(row => row.Descripcion);
 
     let result = () => {
@@ -41,7 +38,6 @@ let ChartData4 = (MiArray) => {
     console.error(e);
   }
 };
-
 
 let ChartBar1 = props => {
   return (
@@ -103,19 +99,20 @@ export default class Modulo extends React.PureComponent {
 
     this.state = {
       page: "777",
-      Resultado2: [{Descripcion:"Encuesta"}],
-      ChartData2: {},
-
+      Resultado2: [{ Descripcion: "Encuesta" }],
+      ChartData2: {}
     };
   } // ------------------------- Constructor
 
-
-  componentWillMount() {
+  componentDidMount() {
     this.getdatoschart3(this.props.IdPregunta);
   }
 
+  componentWillReceiveProps(someprop) {
+    this.getdatoschart3(someprop.IdPregunta);
+  }
 
-  getdatoschart3 = async (IdPregunta) => {
+  getdatoschart3 = async IdPregunta => {
     var axdatachart = await axios({
       url: "https://smxai.net/graphqlpub",
       method: "post",
@@ -149,19 +146,18 @@ export default class Modulo extends React.PureComponent {
       }
     });
 
-
     let resultado2 = axdatachart.data.data.LivePreguntaId;
     this.setState({ Resultado2: resultado2 });
-    this.setState({ChartData2: ChartData4(resultado2[0].Opciones)});
+    this.setState({ ChartData2: ChartData4(resultado2[0].Opciones) });
   };
 
   render() {
     return (
       <div>
         <ChartPie1
-        title={this.state.Resultado2[0].Descripcion}
-        chartdata={this.state.ChartData2}
-       />
+          title={this.state.Resultado2[0].Descripcion}
+          chartdata={this.state.ChartData2}
+        />
       </div>
     );
   }
