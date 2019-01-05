@@ -7,8 +7,9 @@ import { theme1, theme3 } from "../css/themes";
 //import * as cssx from "../css/css3";
 
 import axios from "axios";
+import moment from "moment";
 
-import { Bar, Pie, Line } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 // ---------------------------------------------------------------------
 
@@ -17,8 +18,9 @@ let ChartLine1 = props => {
     <div>
       <Line
         data={props.chartdata}
-        redraw={props.redraw || false}
+        redraw={true}
         options={{
+          responsive: true,
           legend: {
             display: false,
             labels: {
@@ -39,7 +41,17 @@ let ChartLine1 = props => {
                 }
               }
             ]
-          }
+          },
+          animation: {
+            duration: 0, // general animation time
+          },
+
+          hover: {
+            mode: 'nearest',
+            intersect: true
+          },
+
+
         }}
       />
     </div>
@@ -54,12 +66,14 @@ export default class Modulo extends React.PureComponent {
       page: "777",
       Resultado2: [{ Descripcion: "Mood" }],
       ChartData2: {
-        labels: ["1", "2", "3", "4", "5"],
+        labels: [
+
+        ],
         datasets: [
           {
             stack: 0,
             label: "label",
-            data: [3.2, 3.7, 4.3, 3.0, 2.5],
+            data: [ ],
             borderWidth: 4,
             borderColor: "Gold",
             backgroundColor: null,
@@ -71,8 +85,8 @@ export default class Modulo extends React.PureComponent {
   } // ------------------------- Constructor
 
   componentDidMount() {
-    // this.getdatoschart3(this.props.IdPregunta);
-    // this.timerID = setInterval(() => this.tick(), 5000);
+     this.timerID = setInterval(() => this.tick(), 10000);
+
   }
 
   componentWillMount() {
@@ -80,51 +94,62 @@ export default class Modulo extends React.PureComponent {
   }
 
   tick() {
-    this.getdatoschart3(this.props.IdPregunta);
+    this.getmoodA()
   }
 
   componentWillReceiveProps(someprop) {
-    this.getdatoschart3(someprop.IdPregunta);
+    //this.getdatoschart3(someprop.IdPregunta);
   }
 
-  getdatoschart3 = async IdPregunta => {
+
+
+  getmoodA = async () => {
     var axdatachart = await axios({
       url: "https://smxai.net/graphqlpub",
       method: "post",
       data: {
         query: `
-        query LivePreguntaId($IdPregunta: Int) {
-          LivePreguntaId(IdPregunta: $IdPregunta) {
-           Id
-           Tipo
-           Descripcion
-           Obv
-           Icon
-           Opciones {
-              Id
-              IdPregunta
-              Orden
-              Status
-              Icon
-              Color
-              Descripcion
-              Valor
-              Obv
-              Respuestas
-           }
-         }
-        }
+          query MoodA1($TimeFrom: Float, $TimeTo: Float) {
+            MoodA1(TimeFrom: $TimeFrom, TimeTo: $TimeTo) {
+		          Average
+              Count
+            }
+          }
       `,
         variables: {
-          IdPregunta: IdPregunta
+          TimeFrom: 1546700400000,
+          TimeTo: moment().format("x")
         }
       }
     });
 
-    let resultado2 = axdatachart.data.data.LivePreguntaId;
-    this.setState({ Resultado2: resultado2 });
-    this.setState({ ChartData2: ChartData4(resultado2[0].Opciones) });
+    let resultado = axdatachart.data.data.MoodA1;
+    console.log('moodA: ' + JSON.stringify(resultado))
+
+    this.moodAdd(resultado)
+
+
   };
+
+
+
+  moodAdd = (Reg) => {
+
+    let MiChartData = this.state.ChartData2
+
+    MiChartData.datasets[0].data.splice(MiChartData.datasets[0].data.length + 1, 0, Reg[0].Average);
+    MiChartData.labels.splice(MiChartData.labels.length + 1, 0, moment().format("HH:mm:ss"));
+
+    this.setState({ ChartData2: MiChartData });
+
+
+    this.setState({ state: this.state });
+
+
+  }
+
+
+
 
   render() {
     return (
@@ -137,3 +162,4 @@ export default class Modulo extends React.PureComponent {
     );
   }
 }
+

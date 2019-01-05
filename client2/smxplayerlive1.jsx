@@ -135,10 +135,10 @@ export default class Modulo extends React.PureComponent {
   } // ------------------------- Constructor
 
   componentDidMount() {
-    EsPregunta.onmessage = e => {
-      console.log(JSON.parse(e.data));
-      this.setState({ Pregunta: JSON.parse(e.data) });
-    };
+   // EsPregunta.onmessage = e => {
+   //   console.log(JSON.parse(e.data));
+   //   this.setState({ Pregunta: JSON.parse(e.data) });
+   // };
   }
 
   QueryChanged(event) {
@@ -172,7 +172,7 @@ export default class Modulo extends React.PureComponent {
         variables: {
           Reg: {
             IdSesion: 1,
-            FbId: 5589,
+            FbId: this.props.usr,
             Mood: mood,
             Weight: 1,
             Obv: "Gui"
@@ -185,37 +185,13 @@ export default class Modulo extends React.PureComponent {
 
     let MiEstrella = {};
 
-    if (mood >= 1) {
-      MiEstrella.e1 = "Gold";
-    } else {
-      MiEstrella.e1 = "SlateGrey";
-    }
-    if (mood >= 2) {
-      MiEstrella.e2 = "Gold";
-    } else {
-      MiEstrella.e2 = "SlateGrey";
-    }
-    if (mood >= 3) {
-      MiEstrella.e3 = "Gold";
-    } else {
-      MiEstrella.e3 = "SlateGrey";
-    }
-    if (mood >= 4) {
-      MiEstrella.e4 = "Gold";
-    } else {
-      MiEstrella.e4 = "SlateGrey";
-    }
-    if (mood >= 5) {
-      MiEstrella.e5 = "Gold";
-    } else {
-      MiEstrella.e5 = "SlateGrey";
-    }
-
-    let MiEstrellax = MiEstrella.e1;
+    if (mood >= 1) { MiEstrella.e1 = "Gold" } else { MiEstrella.e1 = "SlateGrey" }
+    if (mood >= 2) { MiEstrella.e2 = "Gold" } else { MiEstrella.e2 = "SlateGrey" }
+    if (mood >= 3) { MiEstrella.e3 = "Gold" } else { MiEstrella.e3 = "SlateGrey" }
+    if (mood >= 4) { MiEstrella.e4 = "Gold" } else { MiEstrella.e4 = "SlateGrey" }
+    if (mood >= 5) { MiEstrella.e5 = "Gold" } else { MiEstrella.e5 = "SlateGrey" }
 
     this.setState({ Estrellas: MiEstrella });
-
-    //this.setState({ Mood: mood });
   }
 
   async sendmensaje(texto) {
