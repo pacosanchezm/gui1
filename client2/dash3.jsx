@@ -8,68 +8,37 @@ import { theme1, theme3 } from "../css/themes";
 
 import axios from "axios";
 
-import { Bar, Pie } from "react-chartjs-2";
+import { Bar, Pie, Line } from "react-chartjs-2";
 
-// -----------------------------------------
+// ---------------------------------------------------------------------
 
-let ChartData4 = MiArray => {
-  try {
-    let MiLabels = MiArray.map(row => row.Descripcion);
-
-    let result = () => {
-      let MiStatus = "Status";
-
-      return [
-        {
-          stack: 0,
-          label: MiStatus,
-          data: MiArray.map(row => row.Respuestas),
-          borderWidth: 1,
-          backgroundColor: MiArray.map(row => row.Color)
-        }
-      ];
-    };
-
-    return {
-      labels: MiLabels,
-      datasets: result()
-    };
-  } catch (e) {
-    console.error(e);
-  }
-};
-
-let ChartPie1 = props => {
+let ChartLine1 = props => {
   return (
     <div>
-      <Pie
+      <Line
         data={props.chartdata}
         redraw={props.redraw || false}
         options={{
-          legend: { display: true },
+          legend: {
+            display: false,
+            labels: {
+              fontColor: "rgb(255, 99, 132)"
+            }
+          },
+
           title: {
             display: true,
             text: `${props.title}`,
-            fontsize: 40
+            fontsize: 21
           },
-          tooltips: {
-            callbacks: {
-              label: function(tooltipItem, data) {
-                var dataset = data.datasets[tooltipItem.datasetIndex];
-
-                var total = dataset.data.reduce(function(
-                  previousValue,
-                  currentValue
-                ) {
-                  return previousValue + currentValue;
-                });
-
-                var titulo = data.labels[tooltipItem.index];
-                var currentValue = dataset.data[tooltipItem.index];
-                var precentage = Math.floor((currentValue / total) * 100 + 0.5);
-                return titulo + ": " + currentValue + " / " + precentage + "%";
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true
+                }
               }
-            }
+            ]
           }
         }}
       />
@@ -83,13 +52,26 @@ export default class Modulo extends React.PureComponent {
 
     this.state = {
       page: "777",
-      Resultado2: [{ Descripcion: "Encuesta" }],
-      ChartData2: {}
+      Resultado2: [{ Descripcion: "Mood" }],
+      ChartData2: {
+        labels: ["1", "2", "3", "4", "5"],
+        datasets: [
+          {
+            stack: 0,
+            label: "label",
+            data: [3.2, 3.7, 4.3, 3.0, 2.5],
+            borderWidth: 4,
+            borderColor: "Gold",
+            backgroundColor: null,
+            fill: false
+          }
+        ]
+      }
     };
   } // ------------------------- Constructor
 
   componentDidMount() {
-    this.getdatoschart3(this.props.IdPregunta);
+    // this.getdatoschart3(this.props.IdPregunta);
     // this.timerID = setInterval(() => this.tick(), 5000);
   }
 
@@ -97,12 +79,12 @@ export default class Modulo extends React.PureComponent {
     clearInterval(this.timerID);
   }
 
-  componentWillReceiveProps(someprop) {
-    this.getdatoschart3(someprop.IdPregunta);
-  }
-
   tick() {
     this.getdatoschart3(this.props.IdPregunta);
+  }
+
+  componentWillReceiveProps(someprop) {
+    this.getdatoschart3(someprop.IdPregunta);
   }
 
   getdatoschart3 = async IdPregunta => {
@@ -147,7 +129,7 @@ export default class Modulo extends React.PureComponent {
   render() {
     return (
       <div>
-        <ChartPie1
+        <ChartLine1
           title={this.state.Resultado2[0].Descripcion}
           chartdata={this.state.ChartData2}
         />

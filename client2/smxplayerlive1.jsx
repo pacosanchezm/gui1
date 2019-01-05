@@ -1,5 +1,4 @@
 import React from "react";
-
 import WebviewControls from "../messenger-api-helpers/webview-controls";
 import glamorous, { ThemeProvider } from "glamorous";
 import { css } from "glamor";
@@ -11,6 +10,8 @@ import axios from "axios";
 import ReactPlayer from "react-player";
 
 //-----------------------------------------------------
+
+let EsPregunta;
 
 //var EsPregunta = new EventSource( "https://smxai.net/liveplayer1/channel/pregunta", { withCredentials: true } );
 
@@ -47,7 +48,7 @@ const Listado1 = props => {
             <cssfibo.Boton1
               css={{ width: "144px" }}
               class="noatiende"
-              color={"grey"}
+              color={props.Row.Color}
               onClick={() => {
                 console.log("click" + props.Row.Id);
                 props.This.RespuestaC(
@@ -110,47 +111,7 @@ export default class Modulo extends React.PureComponent {
 
       Resultado: [],
 
-      Pregunta: [
-        {
-          Id: 0,
-          Tipo: 0,
-          Descripcion: "No hay una pregunta activa",
-          Obv: "---",
-          Icon: null,
-          Opciones: [
-            {
-              Id: 3,
-              IdPregunta: 2,
-              Orden: 1,
-              Status: "Activo",
-              Icon: null,
-              Descripcion: "En la Mañana",
-              Valor: 1,
-              Obv: null
-            },
-            {
-              Id: 4,
-              IdPregunta: 2,
-              Orden: 2,
-              Status: "Activo",
-              Icon: null,
-              Descripcion: "En la tarde",
-              Valor: 1,
-              Obv: null
-            },
-            {
-              Id: 5,
-              IdPregunta: 2,
-              Orden: 3,
-              Status: "Activo",
-              Icon: null,
-              Descripcion: "En la Noche",
-              Valor: 1,
-              Obv: null
-            }
-          ]
-        }
-      ],
+      Pregunta: [{ Descripcion: "No Hay Pregunta Activa", Opciones: [] }],
 
       Estrellas: {
         e1: "SlateGrey",
@@ -174,10 +135,10 @@ export default class Modulo extends React.PureComponent {
   } // ------------------------- Constructor
 
   componentDidMount() {
-    //  EsPregunta.onmessage = e => {
-    //    console.log(JSON.parse(e.data));
-    //    this.setState({ Pregunta: JSON.parse(e.data) });
-    //  };
+    EsPregunta.onmessage = e => {
+      console.log(JSON.parse(e.data));
+      this.setState({ Pregunta: JSON.parse(e.data) });
+    };
   }
 
   QueryChanged(event) {

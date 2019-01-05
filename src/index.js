@@ -12,7 +12,7 @@ import Preguntas from "../client2/livepreguntas.jsx";
 
 const rootElement = document.getElementById("root");
 
-let torender = 5;
+let torender = 1;
 
 //let usr = 1309103235803674; //paco
 

@@ -4,6 +4,7 @@ import React from "react";
 
 import Dash1 from "./dash1";
 import Dash2 from "./dash2";
+import Dash3 from "./dash3";
 
 export default class Main extends React.PureComponent {
   constructor(props) {
@@ -21,9 +22,7 @@ export default class Main extends React.PureComponent {
   render() {
     return (
       <div>
-        <Dash2
-        IdPregunta={1}
-       />
+        <Dash3 IdPregunta={1} />
       </div>
     );
   }

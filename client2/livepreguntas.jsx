@@ -49,9 +49,7 @@ export default class Modulo extends React.PureComponent {
     return (
       <div>
         Juan Solo - Mis 30
-        {/*
-
-    */}
+        {/* */}
         <cssfibo.Box css={{ width: "233px" }}>
           <cssfibo.Boton2
             onClick={() => {
