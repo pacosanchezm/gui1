@@ -9,10 +9,11 @@ import DashMain from "../client2/dashmain1";
 import Player from "../client2/smxplayerlive1.jsx";
 
 import Preguntas from "../client2/livepreguntas.jsx";
+import Mensajes from "../client2/livemensajes.jsx";
 
 const rootElement = document.getElementById("root");
 
-let torender = 1;
+let torender = 6;
 
 //let usr = 1309103235803674; //paco
 
@@ -53,6 +54,13 @@ if (torender == 4) {
 if (torender == 5) {
   ReactDOM.render(
     <Preguntas usr={usr} page={page} id={id} opt={opt} />,
+    rootElement
+  );
+}
+
+if (torender == 6) {
+  ReactDOM.render(
+    <Mensajes usr={usr} page={page} id={id} opt={opt} />,
     rootElement
   );
 }

@@ -43,15 +43,13 @@ let ChartLine1 = props => {
             ]
           },
           animation: {
-            duration: 0, // general animation time
+            duration: 0 // general animation time
           },
 
           hover: {
-            mode: 'nearest',
+            mode: "nearest",
             intersect: true
-          },
-
-
+          }
         }}
       />
     </div>
@@ -66,14 +64,12 @@ export default class Modulo extends React.PureComponent {
       page: "777",
       Resultado2: [{ Descripcion: "Mood" }],
       ChartData2: {
-        labels: [
-
-        ],
+        labels: [],
         datasets: [
           {
             stack: 0,
             label: "label",
-            data: [ ],
+            data: [],
             borderWidth: 4,
             borderColor: "Gold",
             backgroundColor: null,
@@ -85,8 +81,7 @@ export default class Modulo extends React.PureComponent {
   } // ------------------------- Constructor
 
   componentDidMount() {
-     this.timerID = setInterval(() => this.tick(), 10000);
-
+    //  this.timerID = setInterval(() => this.tick(), 10000);
   }
 
   componentWillMount() {
@@ -94,14 +89,12 @@ export default class Modulo extends React.PureComponent {
   }
 
   tick() {
-    this.getmoodA()
+    this.getmoodA();
   }
 
   componentWillReceiveProps(someprop) {
     //this.getdatoschart3(someprop.IdPregunta);
   }
-
-
 
   getmoodA = async () => {
     var axdatachart = await axios({
@@ -124,32 +117,29 @@ export default class Modulo extends React.PureComponent {
     });
 
     let resultado = axdatachart.data.data.MoodA1;
-    console.log('moodA: ' + JSON.stringify(resultado))
+    console.log("moodA: " + JSON.stringify(resultado));
 
-    this.moodAdd(resultado)
-
-
+    this.moodAdd(resultado);
   };
 
+  moodAdd = Reg => {
+    let MiChartData = this.state.ChartData2;
 
-
-  moodAdd = (Reg) => {
-
-    let MiChartData = this.state.ChartData2
-
-    MiChartData.datasets[0].data.splice(MiChartData.datasets[0].data.length + 1, 0, Reg[0].Average);
-    MiChartData.labels.splice(MiChartData.labels.length + 1, 0, moment().format("HH:mm:ss"));
+    MiChartData.datasets[0].data.splice(
+      MiChartData.datasets[0].data.length + 1,
+      0,
+      Reg[0].Average
+    );
+    MiChartData.labels.splice(
+      MiChartData.labels.length + 1,
+      0,
+      moment().format("HH:mm:ss")
+    );
 
     this.setState({ ChartData2: MiChartData });
 
-
     this.setState({ state: this.state });
-
-
-  }
-
-
-
+  };
 
   render() {
     return (
@@ -162,4 +152,3 @@ export default class Modulo extends React.PureComponent {
     );
   }
 }
-
