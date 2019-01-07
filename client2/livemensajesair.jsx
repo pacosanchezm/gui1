@@ -16,11 +16,11 @@ import moment from "moment";
 
 // ------------------------------------------------------------
 
-let Micolor = true;
+let Micolor = true
 
 const Encabezado = props => {
   try {
-    const { children } = props;
+    const { children } = props
 
     const Seccion1 = () => {
       return (
@@ -49,14 +49,13 @@ const Encabezado = props => {
             </div>
           </ThemeProvider>
         </div>
-      );
-    };
+      )
+    }
 
-    return children({ Seccion1: Seccion1() });
-  } catch (e) {
-    console.error(e);
-  }
-};
+    return children({ Seccion1: Seccion1() })
+
+  } catch (e) {console.error(e)}
+}
 
 const Listado1 = props => {
   try {
@@ -204,36 +203,36 @@ export default class Lista extends React.PureComponent {
 
   // Render ------------------------------------------------------------------------
 
-  render() {
-    const { Registros, loading } = this.state;
+    render() {
+      const { Registros, loading } = this.state;
 
-    return (
-      <div>
-        <cssfibo.MyFlex3 css={{ gridArea: "header" }}>
-          <Encabezado Theme={theme3.encabezado} this={this}>
-            {({ Seccion1 }) => <div>{Seccion1}</div>}
-          </Encabezado>
-        </cssfibo.MyFlex3>
+      return (
+        <div>
+          <cssfibo.MyFlex3 css={{ gridArea: "header" }}>
+            <Encabezado Theme={theme3.encabezado} this={this}>
+              {({ Seccion1 }) => <div>{Seccion1}</div>}
+            </Encabezado>
+          </cssfibo.MyFlex3>
 
-        <cssfibo.MyFlex3 css={{ gridArea: "contenido" }}>
-          <ThemeProvider theme={theme3.forma}>
-            <div>
-              {loading ? (
-                <LoadingSpinner />
-              ) : (
-                <Listado1
-                  Key={1}
-                  Theme={theme3.encabezado}
-                  Registros={Registros}
-                  this={this}
-                />
-              )}
-            </div>
-          </ThemeProvider>
-        </cssfibo.MyFlex3>
-      </div>
-    );
-  }
+          <cssfibo.MyFlex3 css={{ gridArea: "contenido" }}>
+            <ThemeProvider theme={theme3.forma}>
+              <div>
+                {loading ? (<LoadingSpinner />) :
+                  (
+                    <Listado1
+                      key={1}
+                      Theme={theme3.encabezado}
+                      Registros={Registros}
+                      this={this}
+                    />
+                  )
+                }
+              </div>
+            </ThemeProvider>
+          </cssfibo.MyFlex3>
+        </div>
+      );
+    }
 
   // ---------------------------------------------------------------- Render
 }
