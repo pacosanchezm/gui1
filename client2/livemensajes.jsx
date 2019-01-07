@@ -200,8 +200,31 @@ export default class Lista extends React.PureComponent {
   } // ------------------------- Constructor
 
   componentWillMount() {
-    this.getdatos();
+    this.getdatos()
+    clearInterval(this.timerID);
   }
+
+  componentDidMount() {
+    this.timerID = setInterval(() => this.tick(), 5000);
+  }
+
+  tick() {
+    this.getdatos()
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   getdatos = async () => {
     try {
