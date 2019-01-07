@@ -11,9 +11,11 @@ import Player from "../client2/smxplayerlive1.jsx";
 import Preguntas from "../client2/livepreguntas.jsx";
 import Mensajes from "../client2/livemensajes.jsx";
 
+import MensajesAir from "../client2/livemensajesair.jsx";
+
 const rootElement = document.getElementById("root");
 
-let torender = 6;
+let torender = 7;
 
 //let usr = 1309103235803674; //paco
 
@@ -61,6 +63,13 @@ if (torender == 5) {
 if (torender == 6) {
   ReactDOM.render(
     <Mensajes usr={usr} page={page} id={id} opt={opt} />,
+    rootElement
+  );
+}
+
+if (torender == 7) {
+  ReactDOM.render(
+    <MensajesAir usr={usr} page={page} id={id} opt={opt} />,
     rootElement
   );
 }
