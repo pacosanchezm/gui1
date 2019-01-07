@@ -74,6 +74,7 @@ const Encabezado = props => {
   } catch (e) {console.error(e)}
 }
 
+
 const Listado1 = props => {
   try {
     const Renglon1 = props => {
@@ -160,11 +161,13 @@ const Listado1 = props => {
   } catch (e) {console.error(e)}
 }
 
+
 const LoadingSpinner = () => (
   <div>
     <cssx.h3> Cargando...</cssx.h3>
   </div>
 )
+
 
 //--------------------------------------------------------------
 
@@ -259,33 +262,33 @@ export default class Lista extends React.PureComponent {
 
   // Render ------------------------------------------------------------------------
 
-  render() {
-    const { Registros, loading } = this.state;
+    render() {
+      const { Registros, loading } = this.state
 
-    return (
-      <div>
-        <cssfibo.MyFlex3 css={{ gridArea: "header" }}>
-          <Encabezado Theme={theme3.encabezado} this={this}>
-            {({Seccion1}) => (<div>{Seccion1}</div>)}
-          </Encabezado>
-        </cssfibo.MyFlex3>
+      return (
+        <div>
+          <cssfibo.MyFlex3 css={{ gridArea: "header" }}>
+            <Encabezado Theme={theme3.encabezado} this={this}>
+              {({Seccion1}) => (<div>{Seccion1}</div>)}
+            </Encabezado>
+          </cssfibo.MyFlex3>
 
-        <cssfibo.MyFlex3 css={{ gridArea: "contenido" }}>
-          <ThemeProvider theme={theme3.forma}>
-            <div>
-              {loading ? (<LoadingSpinner />) : 
-              (<Listado1
-                Key={1}
-                Theme={theme3.encabezado}
-                Registros={Registros}
-                this={this}
-              />)}
-            </div>
-          </ThemeProvider>
-        </cssfibo.MyFlex3>
-      </div>
-    )
-  }
+          <cssfibo.MyFlex3 css={{ gridArea: "contenido" }}>
+            <ThemeProvider theme={theme3.forma}>
+              <div>
+                {loading ? (<LoadingSpinner />) :
+                (<Listado1
+                  Key={1}
+                  Theme={theme3.encabezado}
+                  Registros={Registros}
+                  this={this}
+                />)}
+              </div>
+            </ThemeProvider>
+          </cssfibo.MyFlex3>
+        </div>
+      )
+    }
 
   // ---------------------------------------------------------------- Render
 }
