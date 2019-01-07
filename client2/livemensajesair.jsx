@@ -16,6 +16,8 @@ import moment from "moment";
 
 // ------------------------------------------------------------
 
+
+
 let Micolor = true
 
 const Encabezado = props => {
