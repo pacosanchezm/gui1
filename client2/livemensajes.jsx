@@ -220,8 +220,8 @@ export default class Lista extends React.PureComponent {
         }
       })
 
-      let data = axdata.data.data.LiveMensajes;
-      this.setState({ Registros: data });
+      let data = axdata.data.data.LiveMensajes
+      this.setState({ Registros: data })
       //  this.setState({ loading: false })
     } catch (e) {console.error(e)}
   }
@@ -246,7 +246,7 @@ export default class Lista extends React.PureComponent {
         }
       })
 
-      this.getdatos();
+      this.getdatos()
     } catch (e) {console.error(e)}
   }
 

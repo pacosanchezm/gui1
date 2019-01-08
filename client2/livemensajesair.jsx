@@ -28,8 +28,7 @@ const Encabezado = props => {
         <div>
           <ThemeProvider theme={props.Theme}>
             <div>
-              <cssfibo.MyFlex1
-                css={{ backgroundColor: props.Theme.backgroundcolor }}
+              <cssfibo.MyFlex1 css={{ backgroundColor: props.Theme.backgroundcolor }}
               >
                 <cssx.box3label css={{ width: "233px" }}>
                   <cssx.h3 css={{ fontSize: "34px" }}>Nombre</cssx.h3>
@@ -193,14 +192,10 @@ export default class Lista extends React.PureComponent {
 
       let data = axdata.data.data.LiveMensajes
       this.setState({ Registros: data })
-    } catch (e) {
-      console.error(e);
-    }
+    } catch (e) {console.error(e)}
   }
 
-  cerrar = () => {
-    WebviewControls.close();
-  }
+  cerrar = () => {WebviewControls.close()}
 
   // Render ------------------------------------------------------------------------
 
