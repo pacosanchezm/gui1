@@ -17,7 +17,6 @@ import moment from "moment";
 // ------------------------------------------------------------
 
 
-
 let Micolor = true
 
 const Encabezado = props => {
@@ -111,20 +110,20 @@ const Listado1 = props => {
             Micolor = !Micolor;
           })()}
         </div>
-      );
-    });
+      )
+    })
 
-    return <div>{MiMapa}</div>;
+    return <div>{MiMapa}</div>
   } catch (e) {
     console.error(e);
   }
-};
+}
 
 const LoadingSpinner = () => (
   <div>
     <cssx.h3> Cargando...</cssx.h3>
   </div>
-);
+)
 
 //--------------------------------------------------------------
 
@@ -132,7 +131,7 @@ const LoadingSpinner = () => (
 
 export default class Lista extends React.PureComponent {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       orden: "Id",
@@ -150,7 +149,7 @@ export default class Lista extends React.PureComponent {
           Edad: ""
         }
       ]
-    };
+    }
   } // ------------------------- Constructor
 
 
@@ -190,23 +189,23 @@ export default class Lista extends React.PureComponent {
             }
           }
         }
-      });
+      })
 
-      let data = axdata.data.data.LiveMensajes;
-      this.setState({ Registros: data });
+      let data = axdata.data.data.LiveMensajes
+      this.setState({ Registros: data })
     } catch (e) {
       console.error(e);
     }
-  };
+  }
 
   cerrar = () => {
     WebviewControls.close();
-  };
+  }
 
   // Render ------------------------------------------------------------------------
 
     render() {
-      const { Registros, loading } = this.state;
+      const { Registros, loading } = this.state
 
       return (
         <div>
@@ -233,7 +232,7 @@ export default class Lista extends React.PureComponent {
             </ThemeProvider>
           </cssfibo.MyFlex3>
         </div>
-      );
+      )
     }
 
   // ---------------------------------------------------------------- Render

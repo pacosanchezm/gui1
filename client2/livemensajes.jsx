@@ -16,11 +16,11 @@ import moment from "moment";
 
 // ------------------------------------------------------------
 
-let Micolor = true;
+let Micolor = true
 
 const Encabezado = props => {
   try {
-    const { children } = props;
+    const { children } = props
 
     const Seccion1 = () => {
       return (
@@ -65,32 +65,24 @@ const Encabezado = props => {
             </div>
           </ThemeProvider>
         </div>
-      );
-    };
+      )
+    }
 
-    return children({ Seccion1: Seccion1() });
+    return children({ Seccion1: Seccion1() })
   } catch (e) {
     console.error(e);
   }
-};
+}
 
 const Listado1 = props => {
   try {
     const Renglon1 = props => {
-      let BgColor;
-      if (props.RenglonColor === false) {
-        BgColor = "White";
-      }
-      if (props.RenglonColor === true) {
-        BgColor = "WhiteSmoke";
-      }
+      let BgColor
+      if (props.RenglonColor === false) {BgColor = "White"}
+      if (props.RenglonColor === true) {BgColor = "WhiteSmoke"}
 
-      if (props.Row.Status === "Live") {
-        BgColor = "#ffd6d6";
-      }
-      if (props.Row.Status === "Listo") {
-        BgColor = "#c6ecd6";
-      }
+      if (props.Row.Status === "Live") {BgColor = "#ffd6d6"}
+      if (props.Row.Status === "Listo") {BgColor = "#c6ecd6"}
 
       return (
         <ThemeProvider theme={props.Theme}>
@@ -111,9 +103,7 @@ const Listado1 = props => {
               <cssfibo.Boton1
                 class="noatiende"
                 color={"Red"}
-                onClick={() => {
-                  props.this.StatusU(props.Row.Id, "Live");
-                }}
+                onClick={() => {props.this.StatusU(props.Row.Id, "Live")}}
               >
                 Live
               </cssfibo.Boton1>
@@ -121,9 +111,7 @@ const Listado1 = props => {
               <cssfibo.Boton1
                 class="noatiende"
                 color={"SeaGreen"}
-                onClick={() => {
-                  props.this.StatusU(props.Row.Id, "Listo");
-                }}
+                onClick={() => {props.this.StatusU(props.Row.Id, "Listo")}}
               >
                 Listo
               </cssfibo.Boton1>
@@ -131,17 +119,15 @@ const Listado1 = props => {
               <cssfibo.Boton1
                 class="noatiende"
                 color={"SlateGrey"}
-                onClick={() => {
-                  props.this.StatusU(props.Row.Id, "Oculto");
-                }}
+                onClick={() => {props.this.StatusU(props.Row.Id, "Oculto")}}
               >
                 Ocultar
               </cssfibo.Boton1>
             </cssfibo.MyFlex1>
           </div>
         </ThemeProvider>
-      );
-    };
+      )
+    }
 
     let MiMapa = props.Registros.map(row => {
       return (
@@ -154,23 +140,21 @@ const Listado1 = props => {
             this={props.this}
           />
           {(() => {
-            Micolor = !Micolor;
+            Micolor = !Micolor
           })()}
         </div>
-      );
-    });
+      )
+    })
 
-    return <div>{MiMapa}</div>;
-  } catch (e) {
-    console.error(e);
-  }
-};
+    return <div>{MiMapa}</div>
+  } catch (e) {console.error(e)}
+}
 
 const LoadingSpinner = () => (
   <div>
     <cssx.h3> Cargando...</cssx.h3>
   </div>
-);
+)
 
 //--------------------------------------------------------------
 
@@ -196,33 +180,21 @@ export default class Lista extends React.PureComponent {
           Edad: ""
         }
       ]
-    };
+    }
   } // ------------------------- Constructor
 
   componentWillMount() {
     this.getdatos()
-    clearInterval(this.timerID);
+    clearInterval(this.timerID)
   }
 
   componentDidMount() {
-    this.timerID = setInterval(() => this.tick(), 5000);
+    this.timerID = setInterval(() => this.tick(), 5000)
   }
 
   tick() {
     this.getdatos()
   }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -246,15 +218,13 @@ export default class Lista extends React.PureComponent {
             }
           }
         }
-      });
+      })
 
       let data = axdata.data.data.LiveMensajes;
       this.setState({ Registros: data });
       //  this.setState({ loading: false })
-    } catch (e) {
-      console.error(e);
-    }
-  };
+    } catch (e) {console.error(e)}
+  }
 
   StatusU = async (Id, Status) => {
     try {
@@ -274,22 +244,18 @@ export default class Lista extends React.PureComponent {
             }
           }
         }
-      });
+      })
 
       this.getdatos();
-    } catch (e) {
-      console.error(e);
-    }
-  };
+    } catch (e) {console.error(e)}
+  }
 
-  cerrar = () => {
-    WebviewControls.close();
-  };
+  cerrar = () => {WebviewControls.close()}
 
   // Render ------------------------------------------------------------------------
 
     render() {
-      const { Registros, loading } = this.state;
+      const { Registros, loading } = this.state
 
       return (
         <div>
@@ -316,7 +282,7 @@ export default class Lista extends React.PureComponent {
             </ThemeProvider>
           </cssfibo.MyFlex3>
         </div>
-      );
+      )
     }
 
   // ---------------------------------------------------------------- Render
