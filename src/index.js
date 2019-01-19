@@ -13,9 +13,14 @@ import Mensajes from "../client2/livemensajes.jsx";
 
 import MensajesAir from "../client2/livemensajesair.jsx";
 
+import SusMensajes from "../client2/susmensajes.jsx";
+
+
+
+
 const rootElement = document.getElementById("root");
 
-let torender = 7;
+let torender = 8;
 
 //let usr = 1309103235803674; //paco
 
@@ -70,6 +75,15 @@ if (torender == 6) {
 if (torender == 7) {
   ReactDOM.render(
     <MensajesAir usr={usr} page={page} id={id} opt={opt} />,
+    rootElement
+  );
+}
+
+
+
+if (torender == 8) {
+  ReactDOM.render(
+    <SusMensajes usr={usr} page={page} id={id} opt={opt} />,
     rootElement
   );
 }

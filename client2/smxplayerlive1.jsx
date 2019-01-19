@@ -11,9 +11,10 @@ import ReactPlayer from "react-player";
 
 //-----------------------------------------------------
 
-let EsPregunta;
+//let EsPregunta;
 
-//var EsPregunta = new EventSource( "https://smxai.net/liveplayer1/channel/pregunta", { withCredentials: true } );
+var EsPregunta = new EventSource( "https://smxai.net/livecanales/pregunta", { withCredentials: true } );
+
 
 let Micolor = true;
 
@@ -135,10 +136,10 @@ export default class Modulo extends React.PureComponent {
   } // ------------------------- Constructor
 
   componentDidMount() {
-   // EsPregunta.onmessage = e => {
-   //   console.log(JSON.parse(e.data));
-   //   this.setState({ Pregunta: JSON.parse(e.data) });
-   // };
+    EsPregunta.onmessage = e => {
+      console.log(JSON.parse(e.data));
+      this.setState({ Pregunta: JSON.parse(e.data) });
+   };
   }
 
   QueryChanged(event) {

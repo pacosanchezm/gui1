@@ -33,15 +33,32 @@ export default class Modulo extends React.PureComponent {
 
   setpregunta = async Pregunta => {
     var axdata = await axios({
-      url: "https://smxai.net/liveplayer1/channel/sysInfo/p1?preg=" + Pregunta,
-      method: "get"
-    });
 
-    let resultado = axdata.data;
-    console.log("resultado: " + resultado);
+      url: "https://smxai.net/graphqlpub",
+      method: "post",
+      data: {
+        query: `
+          query LivePreguntaIdSSE($IdPregunta: Int) {
+            LivePreguntaIdSSE(IdPregunta: $IdPregunta) {
+              Count
+            }
+          }
+          `,
+
+        variables: {
+          IdPregunta: Pregunta
+        }
+      }
+
+    });
 
     this.setState({ PreguntaActiva: Pregunta });
   };
+
+
+
+
+
 
   refresh() {}
 
