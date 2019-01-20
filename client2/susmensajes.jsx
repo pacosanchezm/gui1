@@ -24,6 +24,10 @@ export default class Modulo extends React.PureComponent {
       Origen: "Celaya",
 
       Mensaje: "",
+      Mensaje2: "",
+      Mensaje3: "",
+
+
 
       Resultado: [],
 
@@ -38,6 +42,18 @@ export default class Modulo extends React.PureComponent {
     this.setState({ Mensaje: event.target.value });
   }
 
+
+  QueryChanged2(event) {
+    this.setState({ Mensaje2: event.target.value });
+  }
+
+
+  QueryChanged3(event) {
+    this.setState({ Mensaje3: event.target.value });
+  }
+
+
+
   componentWillMount() {
     //  this.getdatoschart1();
   }
@@ -50,16 +66,18 @@ export default class Modulo extends React.PureComponent {
       method: "post",
       data: {
         query: `
-          mutation FeedMensaje($FeedId: Int, $Mensaje: String) {
-            FeedMensaje(FeedId: $FeedId, Mensaje: $Mensaje)
-          }
+mutation FeedMensaje($Reg: FeedMensaje) {
+  FeedMensaje(Reg: $Reg)
+}
           `,
 
         variables: {
-
-          FeedId: 1,
+          Reg: {
+          Tipo: 1,
+          Page: "1559949734304354",
+          FeedId: 4,
           Mensaje: Mensaje,
-
+          }
         }
       }
     });
@@ -83,9 +101,9 @@ export default class Modulo extends React.PureComponent {
           <ThemeProvider theme={theme3.forma}>
             <div>
               <cssfibo.MyFlexR1>
-                <cssx.box3input css={{ width: "377px" }}>
+                <cssx.box3input css={{ width: "610px" }}>
                   <cssx.input3
-                    css={{ width: "377px" }}
+                    css={{ width: "610px" }}
                     theme={theme3.forma}
                     name="Nombre"
                     value={this.state.Mensaje}
@@ -107,6 +125,88 @@ export default class Modulo extends React.PureComponent {
             </div>
           </ThemeProvider>
         </cssfibo.MyFlex3>
+
+
+        <br />
+        <br />
+        <br />
+
+
+
+        <cssfibo.MyFlex3 css={{ gridArea: "contenido" }}>
+          <ThemeProvider theme={theme3.forma}>
+            <div>
+              <cssfibo.MyFlexR1>
+                <cssx.box3input css={{ width: "610px" }}>
+                  <cssx.input3
+                    css={{ width: "610px" }}
+                    theme={theme3.forma}
+                    name="Nombre"
+                    value={this.state.Mensaje2}
+                    onChange={this.QueryChanged2.bind(this)}
+                    key="N1"
+                  />
+                </cssx.box3input>
+
+                <cssfibo.Boton1
+                  class="noatiende"
+                  color={"grey"}
+                  onClick={() => {
+                    this.sendmensaje(this.state.Mensaje2);
+                  }}
+                >
+                  Enviar
+                </cssfibo.Boton1>
+              </cssfibo.MyFlexR1>
+            </div>
+          </ThemeProvider>
+        </cssfibo.MyFlex3>
+
+
+        <br />
+        <br />
+        <br />
+
+
+
+        <cssfibo.MyFlex3 css={{ gridArea: "contenido" }}>
+          <ThemeProvider theme={theme3.forma}>
+            <div>
+              <cssfibo.MyFlexR1>
+                <cssx.box3input css={{ width: "610px" }}>
+                  <cssx.input3
+                    css={{ width: "610px" }}
+                    theme={theme3.forma}
+                    name="Nombre"
+                    value={this.state.Mensaje3}
+                    onChange={this.QueryChanged3.bind(this)}
+                    key="N1"
+                  />
+                </cssx.box3input>
+
+                <cssfibo.Boton1
+                  class="noatiende"
+                  color={"grey"}
+                  onClick={() => {
+                    this.sendmensaje(this.state.Mensaje3);
+                  }}
+                >
+                  Enviar
+                </cssfibo.Boton1>
+              </cssfibo.MyFlexR1>
+            </div>
+          </ThemeProvider>
+        </cssfibo.MyFlex3>
+
+
+
+
+
+
+
+
+
+
 
 
       </div>
