@@ -11,7 +11,6 @@ import ReactPlayer from "react-player";
 
 //------------------------------------------------------------------
 
-
 export default class Modulo extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -27,38 +26,27 @@ export default class Modulo extends React.PureComponent {
       Mensaje2: "",
       Mensaje3: "",
 
-
-
-      Resultado: [],
-
+      Resultado: []
     };
   } // ------------------------- Constructor
 
-  componentDidMount() {
-
-  }
+  componentDidMount() {}
 
   QueryChanged(event) {
     this.setState({ Mensaje: event.target.value });
   }
 
-
   QueryChanged2(event) {
     this.setState({ Mensaje2: event.target.value });
   }
-
 
   QueryChanged3(event) {
     this.setState({ Mensaje3: event.target.value });
   }
 
-
-
   componentWillMount() {
     //  this.getdatoschart1();
   }
-
-
 
   async sendmensaje(Mensaje) {
     var axdatachart = await axios({
@@ -73,20 +61,18 @@ mutation FeedMensaje($Reg: FeedMensaje) {
 
         variables: {
           Reg: {
-          Tipo: 1,
-          Page: "1559949734304354",
-          FeedId: 4,
-          Mensaje: Mensaje,
+            Tipo: 1,
+            Page: "473465412680744",
+            Persona: "",
+            FeedId: 1,
+            Mensaje: Mensaje
           }
         }
       }
     });
 
     //let resultado = axdatachart.data.data.LiveMensajeC;
-
   }
-
-
 
   //--------------------------------------------------------------------
 
@@ -94,9 +80,7 @@ mutation FeedMensaje($Reg: FeedMensaje) {
     return (
       <div>
         Mensajes a Suscripciones
-
         {/* */}
-
         <cssfibo.MyFlex3 css={{ gridArea: "contenido" }}>
           <ThemeProvider theme={theme3.forma}>
             <div>
@@ -125,14 +109,9 @@ mutation FeedMensaje($Reg: FeedMensaje) {
             </div>
           </ThemeProvider>
         </cssfibo.MyFlex3>
-
-
         <br />
         <br />
         <br />
-
-
-
         <cssfibo.MyFlex3 css={{ gridArea: "contenido" }}>
           <ThemeProvider theme={theme3.forma}>
             <div>
@@ -161,14 +140,9 @@ mutation FeedMensaje($Reg: FeedMensaje) {
             </div>
           </ThemeProvider>
         </cssfibo.MyFlex3>
-
-
         <br />
         <br />
         <br />
-
-
-
         <cssfibo.MyFlex3 css={{ gridArea: "contenido" }}>
           <ThemeProvider theme={theme3.forma}>
             <div>
@@ -197,18 +171,6 @@ mutation FeedMensaje($Reg: FeedMensaje) {
             </div>
           </ThemeProvider>
         </cssfibo.MyFlex3>
-
-
-
-
-
-
-
-
-
-
-
-
       </div>
     );
   }
