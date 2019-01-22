@@ -90,7 +90,7 @@ export default class Modulo extends React.PureComponent {
 
   componentDidMount() {
     this.getdatoschart3(this.props.IdPregunta);
-    // this.timerID = setInterval(() => this.tick(), 5000);
+     this.timerID = setInterval(() => this.tick(), 5000);
   }
 
   componentWillMount() {
