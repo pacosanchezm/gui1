@@ -20,7 +20,7 @@ import SusMensajes from "../client2/susmensajes.jsx";
 
 const rootElement = document.getElementById("root");
 
-let torender = 8;
+let torender = 1;
 
 //let usr = 1309103235803674; //paco
 

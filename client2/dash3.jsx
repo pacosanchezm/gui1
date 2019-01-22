@@ -81,7 +81,7 @@ export default class Modulo extends React.PureComponent {
   } // ------------------------- Constructor
 
   componentDidMount() {
-    //  this.timerID = setInterval(() => this.tick(), 10000);
+      this.timerID = setInterval(() => this.tick(), 10000);
   }
 
   componentWillMount() {

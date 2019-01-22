@@ -22,7 +22,7 @@ export default class Main extends React.PureComponent {
   render() {
     return (
       <div>
-        <Dash3 IdPregunta={1} />
+        <Dash2 IdPregunta={1} />
       </div>
     );
   }
