@@ -38,7 +38,7 @@ const Encabezado = props => {
                   }}
                 >
                   <cssfibo.h1
-                    text="Mensajes"
+                    text="Usuarios"
                     size="18"
                     color="White"
                     weight="Bold"
@@ -51,11 +51,17 @@ const Encabezado = props => {
                 css={{ backgroundColor: props.Theme.backgroundcolor }}
               >
 
-                <cssx.box3label css={{ width: "34px" }}>
+
+                <cssx.box3label css={{ width: "65px" }}>
+                  <cssx.h3></cssx.h3>
+                </cssx.box3label>
+
+
+                <cssx.box3label css={{ width: "55px" }}>
                   <cssx.h3>Id</cssx.h3>
                 </cssx.box3label>
 
-                <cssx.box3label css={{ width: "89px" }}>
+                <cssx.box3label css={{ width: "100px" }}>
                   <cssx.h3>Nombre</cssx.h3>
                 </cssx.box3label>
 
@@ -94,6 +100,15 @@ const Listado1 = props => {
         <ThemeProvider theme={props.Theme}>
           <div>
             <cssfibo.MyFlex1 css={{ backgroundColor: BgColor }}>
+
+              <cssx.box3label css={{ width: "55px", paddingRight: 0 }}>
+                <cssx.foto1
+                src={props.Row.Profile_pic} 
+                css={{ width: "34px", paddingRight: 21 }}
+              />
+              </cssx.box3label>
+
+
 
 
               <cssx.box3label css={{ width: "34px", paddingRight: 21 }}>
@@ -234,7 +249,7 @@ export default class Lista extends React.PureComponent {
               //     Status: "Live"
               Page: Page,
               // Nombre: "Victor",
-              Limit: 500,
+              Limit: 10,
             }
           }
         }
