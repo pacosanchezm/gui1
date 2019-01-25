@@ -12,6 +12,8 @@ import * as cssx from "../css/css2";
 import axios from "axios";
 import moment from "moment";
 
+import Dropbox from "react-select";
+
 // ------------------------------------------------------------
 
 // ------------------------------------------------------------
@@ -32,7 +34,7 @@ const Encabezado = props => {
               >
                 <cssfibo.Box1
                   css={{
-                    width: 377,
+                    width: 89,
                     backgroundColor: props.Theme.backgroundcolor,
                     height: 34
                   }}
@@ -45,17 +47,29 @@ const Encabezado = props => {
                     style="Normal"
                   />
                 </cssfibo.Box1>
+
+                <cssfibo.Box1
+                  css={{
+                    width: 244,
+                    backgroundColor: props.Theme.backgroundcolor,
+                    height: 34
+                  }}
+                >
+                  <Dropbox
+                    name="dropEstado"
+                    value={props.this.state.DropStart}
+                    options={props.this.state.Dropoptions}
+                    onChange={props.this.logChange.bind(this)}
+                  />
+                </cssfibo.Box1>
               </cssfibo.MyFlex1>
 
               <cssfibo.MyFlex1
                 css={{ backgroundColor: props.Theme.backgroundcolor }}
               >
-
-
                 <cssx.box3label css={{ width: "65px" }}>
-                  <cssx.h3></cssx.h3>
+                  <cssx.h3 />
                 </cssx.box3label>
-
 
                 <cssx.box3label css={{ width: "55px" }}>
                   <cssx.h3>Id</cssx.h3>
@@ -68,9 +82,6 @@ const Encabezado = props => {
                 <cssx.box3label css={{ width: "89px" }}>
                   <cssx.h3>Apellidos</cssx.h3>
                 </cssx.box3label>
-
-
-
               </cssfibo.MyFlex1>
             </div>
           </ThemeProvider>
@@ -95,27 +106,20 @@ const Listado1 = props => {
         BgColor = "WhiteSmoke";
       }
 
-
       return (
         <ThemeProvider theme={props.Theme}>
           <div>
             <cssfibo.MyFlex1 css={{ backgroundColor: BgColor }}>
-
               <cssx.box3label css={{ width: "55px", paddingRight: 0 }}>
                 <cssx.foto1
-                src={props.Row.Profile_pic} 
-                css={{ width: "34px", paddingRight: 21 }}
-              />
+                  src={props.Row.Profile_pic}
+                  css={{ width: "34px", paddingRight: 21 }}
+                />
               </cssx.box3label>
-
-
-
 
               <cssx.box3label css={{ width: "34px", paddingRight: 21 }}>
                 <cssx.h3>{props.Row.Id}</cssx.h3>
               </cssx.box3label>
-
-
 
               <cssx.box3label css={{ width: "89px" }}>
                 <cssx.h3>{props.Row.Nombre}</cssx.h3>
@@ -124,8 +128,6 @@ const Listado1 = props => {
               <cssx.box3label css={{ width: "89px" }}>
                 <cssx.h3>{props.Row.Apellidos}</cssx.h3>
               </cssx.box3label>
-
-
 
               <cssfibo.Boton1
                 class="noatiende"
@@ -136,16 +138,11 @@ const Listado1 = props => {
               >
                 Live
               </cssfibo.Boton1>
-
-
-
             </cssfibo.MyFlex1>
           </div>
         </ThemeProvider>
       );
     };
-
-
 
     let MiMapa = props.Registros.map(row => {
       return (
@@ -197,40 +194,49 @@ export default class Lista extends React.PureComponent {
           Apellidos: "",
           Profile_pic: "",
           Genero: "",
-          Page: "",
+          Page: ""
         }
+      ],
+
+      DropStart: [{ value: 0, label: "Página" }],
+
+      Dropoptions: [
+        {
+          value: 1559949734304354,
+          label: "YosoyCDMX"
+        },
+        { value: 473465412680744, label: "YosoyLeón" },
+        { value: 608866805951764, label: "YosoyMonterrey" }
       ]
     };
   } // ------------------------- Constructor
 
   componentWillMount() {
-    this.getdatos(1387817898201761)
+    this.getdatos(0);
     // clearInterval(this.timerID);
   }
 
   componentDidMount() {
-  //  this.timerID = setInterval(() => this.tick(), 5000);
+    //  this.timerID = setInterval(() => this.tick(), 5000);
   }
 
   tick() {
-    this.getdatos()
+    this.getdatos();
   }
 
+  logChange = async val => {
+    try {
+      console.log("Selected: ", val);
 
+      this.setState({ DropStart: val });
+      //await (this.setState({ Pagina: 1 }))
+      this.getdatos(val.value);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
-
-
-
-
-
-
-
-
-
-
-
-
-  getdatos = async (Page) => {
+  getdatos = async Page => {
     try {
       //  this.setState({ loading: true });
       var axdata = await axios({
@@ -249,7 +255,7 @@ export default class Lista extends React.PureComponent {
               //     Status: "Live"
               Page: Page,
               // Nombre: "Victor",
-              Limit: 10,
+              Limit: 25
             }
           }
         }
