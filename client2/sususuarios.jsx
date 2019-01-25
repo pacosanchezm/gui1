@@ -49,7 +49,7 @@ const Encabezado = props => {
                 </cssfibo.Box1>
 
                 <cssfibo.Box1
-                  css={{
+                css={{
                     width: 244,
                     backgroundColor: props.Theme.backgroundcolor,
                     height: 34
@@ -82,6 +82,7 @@ const Encabezado = props => {
                 <cssx.box3label css={{ width: "89px" }}>
                   <cssx.h3>Apellidos</cssx.h3>
                 </cssx.box3label>
+
               </cssfibo.MyFlex1>
             </div>
           </ThemeProvider>
@@ -90,9 +91,7 @@ const Encabezado = props => {
     };
 
     return children({ Seccion1: Seccion1() });
-  } catch (e) {
-    console.error(e);
-  }
+  } catch (e) {console.error(e)}
 };
 
 const Listado1 = props => {
@@ -105,6 +104,12 @@ const Listado1 = props => {
       if (props.RenglonColor === true) {
         BgColor = "WhiteSmoke";
       }
+
+
+
+      let miurl = "https://smxai.net/suspanel?feed=0&secc=3&opt=2&usr=" + props.Row.FbId
+
+
 
       return (
         <ThemeProvider theme={props.Theme}>
@@ -129,15 +134,27 @@ const Listado1 = props => {
                 <cssx.h3>{props.Row.Apellidos}</cssx.h3>
               </cssx.box3label>
 
-              <cssfibo.Boton1
-                class="noatiende"
-                color={"Red"}
-                onClick={() => {
-                  props.this.StatusU(props.Row.Id, "Live");
-                }}
-              >
-                Live
-              </cssfibo.Boton1>
+
+
+
+              <cssx.a4 {...props}
+                text={'ir'}
+                url={miurl}
+                target="_blank"
+                width={34}
+              />
+
+
+
+
+
+
+
+
+
+
+
+
             </cssfibo.MyFlex1>
           </div>
         </ThemeProvider>
@@ -154,17 +171,13 @@ const Listado1 = props => {
             Theme={theme3.renglon}
             this={props.this}
           />
-          {(() => {
-            Micolor = !Micolor;
-          })()}
+        {(() => {Micolor = !Micolor})()}
         </div>
       );
     });
 
     return <div>{MiMapa}</div>;
-  } catch (e) {
-    console.error(e);
-  }
+  } catch (e) {console.error(e)}
 };
 
 const LoadingSpinner = () => (
@@ -194,35 +207,30 @@ export default class Lista extends React.PureComponent {
           Apellidos: "",
           Profile_pic: "",
           Genero: "",
-          Page: ""
+          Page: "",
+          FbId:"",
         }
       ],
 
       DropStart: [{ value: 0, label: "Página" }],
 
       Dropoptions: [
-        {
-          value: 1559949734304354,
-          label: "YosoyCDMX"
-        },
+        { value: 1559949734304354, label: "YosoyCDMX" },
         { value: 473465412680744, label: "YosoyLeón" },
-        { value: 608866805951764, label: "YosoyMonterrey" }
+        { value: 608866805951764, label: "YosoyMonterrey" },
       ]
     };
   } // ------------------------- Constructor
 
-  componentWillMount() {
-    this.getdatos(0);
-    // clearInterval(this.timerID);
+  componentWillMount = () => {
+    try {
+      this.getdatos(0);
+      // clearInterval(this.timerID);
+    } catch (e) { console.error(e) }
+
   }
 
-  componentDidMount() {
-    //  this.timerID = setInterval(() => this.tick(), 5000);
-  }
 
-  tick() {
-    this.getdatos();
-  }
 
   logChange = async val => {
     try {
@@ -231,14 +239,12 @@ export default class Lista extends React.PureComponent {
       this.setState({ DropStart: val });
       //await (this.setState({ Pagina: 1 }))
       this.getdatos(val.value);
-    } catch (e) {
-      console.error(e);
-    }
+    } catch (e) {console.error(e)}
   };
 
   getdatos = async Page => {
     try {
-      //  this.setState({ loading: true });
+      this.setState({ loading: true });
       var axdata = await axios({
         url: "https://smxai.net/graphqlpub",
         method: "post",
@@ -246,7 +252,7 @@ export default class Lista extends React.PureComponent {
           query: `
             query UsuariosPage($Query: Regusuarios) {
             UsuariosPage(Query: $Query){
-              Id, Status, Nombre, Apellidos, Profile_pic, Genero, Page
+              Id, Status, Nombre, Apellidos, Profile_pic, Genero, Page, FbId
             }
           }
           `,
@@ -263,10 +269,8 @@ export default class Lista extends React.PureComponent {
 
       let data = axdata.data.data.UsuariosPage;
       this.setState({ Registros: data });
-      //  this.setState({ loading: false })
-    } catch (e) {
-      console.error(e);
-    }
+      this.setState({ loading: false })
+    } catch (e) {console.error(e)}
   };
 
   StatusU = async (Id, Status) => {
@@ -290,9 +294,7 @@ export default class Lista extends React.PureComponent {
       });
 
       this.getdatos();
-    } catch (e) {
-      console.error(e);
-    }
+    } catch (e) {console.error(e)}
   };
 
   cerrar = () => {

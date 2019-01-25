@@ -523,3 +523,84 @@ exports.grid1 = glamorous.div(({ theme }) => (
 //   background-color: #fff;
 //   color: #444;
 // }
+
+
+
+exports.a4 = (props) => {
+
+  const MiBox = glamorous.div({
+    width: props.width || props.Box.width,
+   // padding: props.boxpadding || props.Box.padding,
+    //borderRadius: props.boxborderradius || props.Box.borderradius,
+  })
+
+  const Mia = glamorous.a({
+
+    fontSize: 10 || props.Texto.size,
+
+  })
+
+
+
+  let Boton1 = glamorous.button(() => ({
+
+    backgroundColor: 'green',
+    fontSize: 11,
+    margin: 5,
+    border: 'none',
+    cursor: 'pointer',
+    display: 'inline-block',
+    padding: '5px 10px',
+    textAlign: 'center',
+    transition: '0.25s cubic-bezier(0.17, 0.67, 0.52, 0.97)',
+    borderRadius: 4,
+    color: '#fff',
+    boxShadow: '0 2px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08)',
+    ':hover': {
+      opacity: 0.7,
+      transform: 'translateY(-1px)',
+      boxShadow: '0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08)'
+    },
+    ':focus': { outline: 0 },
+    ':active': {
+      transform: 'translateY(1px)'
+    }
+
+  })
+
+  )
+
+
+
+
+
+
+  return (
+
+
+    <MiBox>
+
+      <Mia href={props.url} target={props.target}>
+
+
+      -->
+
+      </Mia>
+
+    </MiBox>
+
+
+  )
+
+}
+
+
+
+
+
+
+
+
+
+
+
