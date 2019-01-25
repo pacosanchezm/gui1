@@ -15,6 +15,7 @@ import MensajesAir from "../client2/livemensajesair.jsx";
 
 import SusMensajes from "../client2/susmensajes.jsx";
 import Sususuarios from "../client2/sususuarios.jsx";
+import Sussubs from "../client2/sussubs.jsx";
 
 
 
@@ -23,11 +24,11 @@ import Sususuarios from "../client2/sususuarios.jsx";
 
 const rootElement = document.getElementById("root");
 
-let torender = 9;
+let torender = 10;
 
 //let usr = 1309103235803674; //paco
 
-let usr = 1918065804955896; //paco
+let usr = 1658827024129843; //paco
 
 //let page = 1387817898201761;
 
@@ -93,6 +94,17 @@ if (torender == 8) {
 if (torender == 9) {
   ReactDOM.render(
     <Sususuarios usr={usr} page={page} id={id} opt={opt} />,
+    rootElement
+  );
+}
+
+
+
+
+
+if (torender == 10) {
+  ReactDOM.render(
+    <Sussubs usr={usr} page={page} id={id} opt={opt} />,
     rootElement
   );
 }

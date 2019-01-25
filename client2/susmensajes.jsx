@@ -136,6 +136,7 @@ mutation FeedMensaje($Reg: FeedMensaje) {
                 >
                   Enviar
                 </cssfibo.Boton1>
+                
               </cssfibo.MyFlexR1>
             </div>
           </ThemeProvider>

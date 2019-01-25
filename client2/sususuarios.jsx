@@ -22,7 +22,6 @@ let Micolor = true;
 
 const Encabezado = props => {
   try {
-    const { children } = props;
 
     const Seccion1 = () => {
       return (
@@ -90,7 +89,8 @@ const Encabezado = props => {
       );
     };
 
-    return children({ Seccion1: Seccion1() });
+    return Seccion1()
+
   } catch (e) {console.error(e)}
 };
 
@@ -98,18 +98,10 @@ const Listado1 = props => {
   try {
     const Renglon1 = props => {
       let BgColor;
-      if (props.RenglonColor === false) {
-        BgColor = "White";
-      }
-      if (props.RenglonColor === true) {
-        BgColor = "WhiteSmoke";
-      }
-
-
+      if (props.RenglonColor === false) {BgColor = "White"}
+      if (props.RenglonColor === true) {BgColor = "WhiteSmoke"}
 
       let miurl = "https://smxai.net/suspanel?feed=0&secc=3&opt=2&usr=" + props.Row.FbId
-
-
 
       return (
         <ThemeProvider theme={props.Theme}>
@@ -135,24 +127,12 @@ const Listado1 = props => {
               </cssx.box3label>
 
 
-
-
               <cssx.a4 {...props}
                 text={'ir'}
                 url={miurl}
                 target="_blank"
                 width={34}
               />
-
-
-
-
-
-
-
-
-
-
 
 
             </cssfibo.MyFlex1>
@@ -225,7 +205,6 @@ export default class Lista extends React.PureComponent {
   componentWillMount = () => {
     try {
       this.getdatos(0);
-      // clearInterval(this.timerID);
     } catch (e) { console.error(e) }
 
   }
@@ -234,8 +213,6 @@ export default class Lista extends React.PureComponent {
 
   logChange = async val => {
     try {
-      console.log("Selected: ", val);
-
       this.setState({ DropStart: val });
       //await (this.setState({ Pagina: 1 }))
       this.getdatos(val.value);
@@ -258,9 +235,7 @@ export default class Lista extends React.PureComponent {
           `,
           variables: {
             Query: {
-              //     Status: "Live"
               Page: Page,
-              // Nombre: "Victor",
               Limit: 25
             }
           }
