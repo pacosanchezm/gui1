@@ -67,11 +67,6 @@ const Encabezado = props => {
 
 
 
-
-
-
-
-
               </cssfibo.MyFlex1>
 
 
@@ -343,7 +338,7 @@ export default class Lista extends React.PureComponent {
       });
 
       this.setState({ Registros: axdata.data.data.UsuarioSus })
-      this.setState({ loading: false })
+      //this.setState({ loading: false })
 
     } catch (e) { console.error(e) }
   };
@@ -453,64 +448,9 @@ export default class Lista extends React.PureComponent {
   };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  StatusU = async (Id, Status) => {
-    try {
-      await axios({
-        url: "https://smxai.net/graphqlpub",
-        method: "post",
-        data: {
-          query: `
-            mutation LiveMensajeU($Reg: LiveMensajeInput) {
-              LiveMensajeU(Reg: $Reg)
-            }
-          `,
-          variables: {
-            Reg: {
-              Id: Id,
-              Status: Status
-            }
-          }
-        }
-      });
-
-      this.getdatos();
-    } catch (e) { console.error(e) }
-  };
-
-
-
-
-
-
-
   cerrar = () => {
     WebviewControls.close();
   };
-
-
-
-
-
-
 
 
 
@@ -552,6 +492,10 @@ export default class Lista extends React.PureComponent {
       </div>
     );
   }
+
+
+
+
 
   // ---------------------------------------------------------------- Render
 }
