@@ -54,13 +54,6 @@ export default class Modulo extends React.PureComponent {
 
 
 
-
-
-
-
-
-
-
     };
   } // ------------------------- Constructor
 
@@ -244,22 +237,6 @@ export default class Modulo extends React.PureComponent {
 
 
         </cssfibo.MyFlex3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         <cssfibo.MyFlex3 css={{ gridArea: "contenido" }}>
