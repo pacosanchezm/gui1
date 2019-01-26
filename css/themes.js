@@ -172,7 +172,13 @@ exports.theme3 = {
       display: 'inline-block',
     },
 
-
+    boxinput: {
+      padding: '10px 0',
+      borderradius: '',
+      flex: '3',
+      margin: '0 8px 0 21px',
+      textalign: 'left',
+    },
 
   },
 

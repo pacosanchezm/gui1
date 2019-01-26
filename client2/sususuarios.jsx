@@ -39,7 +39,7 @@ const Encabezado = props => {
                   }}
                 >
                   <cssfibo.h1
-                    text="Usuarios"
+                    text="Usuarioss"
                     size="18"
                     color="White"
                     weight="Bold"
@@ -62,6 +62,33 @@ const Encabezado = props => {
                   />
                 </cssfibo.Box1>
               </cssfibo.MyFlex1>
+
+
+
+
+
+                    <cssfibo.MyFlexR1>
+
+
+                      <cssx.box3input css={{ width: "244px" }}>
+                        <cssx.input3
+                          css={{ width: "244px" }}
+                          theme={theme3.forma}
+                          name="Nombre"
+                          value={props.this.state.Filtro1}
+                          onChange={props.this.QueryChanged3.bind(this)}
+                          key="N1"
+                        />
+                      </cssx.box3input>
+
+
+                    </cssfibo.MyFlexR1>
+
+
+
+
+
+
 
               <cssfibo.MyFlex1
                 css={{ backgroundColor: props.Theme.backgroundcolor }}
@@ -198,7 +225,14 @@ export default class Lista extends React.PureComponent {
         { value: 1559949734304354, label: "YosoyCDMX" },
         { value: 473465412680744, label: "YosoyLeón" },
         { value: 608866805951764, label: "YosoyMonterrey" },
-      ]
+        { value: 615428365299641, label: "YosoyGuadalajara" },
+        { value: 326130311097631, label: "YosoyQueretaro" },
+        { value: 179694742435753, label: "YosoyTijuana" },
+      ],
+
+    Filtro1:"",
+
+
     };
   } // ------------------------- Constructor
 
@@ -276,6 +310,23 @@ export default class Lista extends React.PureComponent {
     WebviewControls.close();
   };
 
+
+
+  QueryChanged3(event) {
+    this.setState({ Filtro1: event.target.value });
+  }
+
+
+
+
+
+
+
+
+
+
+
+
   // Render ------------------------------------------------------------------------
 
   render() {
@@ -288,6 +339,16 @@ export default class Lista extends React.PureComponent {
             {({ Seccion1 }) => <div>{Seccion1}</div>}
           </Encabezado>
         </cssfibo.MyFlex3>
+
+
+
+
+
+
+
+
+
+
 
         <cssfibo.MyFlex3 css={{ gridArea: "contenido" }}>
           <ThemeProvider theme={theme3.forma}>
