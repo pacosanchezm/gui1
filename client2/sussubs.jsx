@@ -283,8 +283,6 @@ export default class Lista extends React.PureComponent {
   };
 
 
-
-
   getdatos = async () => {
     try {
       var axdata = await axios({
@@ -310,8 +308,6 @@ export default class Lista extends React.PureComponent {
 
     } catch (e) { console.error(e) }
   };
-
-
 
 
   getregs = async () => {
@@ -344,8 +340,6 @@ export default class Lista extends React.PureComponent {
   };
 
 
-
-
   getopts = async () => {
     try {
       var axdata = await axios({
@@ -375,24 +369,6 @@ export default class Lista extends React.PureComponent {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   SusC = async () => {
     try {
       await axios({
@@ -417,10 +393,6 @@ export default class Lista extends React.PureComponent {
       this.getregs()
     } catch (e) { console.error(e) }
   };
-
-
-
-
 
 
 

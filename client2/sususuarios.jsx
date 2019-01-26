@@ -29,15 +29,15 @@ const Encabezado = props => {
           <ThemeProvider theme={props.Theme}>
             <div>
               <cssfibo.MyFlex1
-                css={{ backgroundColor: props.Theme.backgroundcolor }}
-              >
+                css={{ backgroundColor: props.Theme.backgroundcolor }}>
+
                 <cssfibo.Box1
                   css={{
                     width: 89,
                     backgroundColor: props.Theme.backgroundcolor,
                     height: 34
-                  }}
-                >
+                  }}>
+
                   <cssfibo.h1
                     text="Usuarioss"
                     size="18"
@@ -45,66 +45,57 @@ const Encabezado = props => {
                     weight="Bold"
                     style="Normal"
                   />
+
                 </cssfibo.Box1>
 
                 <cssfibo.Box1
-                css={{
+                  css={{
                     width: 244,
                     backgroundColor: props.Theme.backgroundcolor,
                     height: 34
-                  }}
-                >
+                  }}>
+
                   <Dropbox
                     name="dropEstado"
                     value={props.this.state.DropStart}
                     options={props.this.state.Dropoptions}
                     onChange={props.this.logChange.bind(this)}
                   />
+
+
                 </cssfibo.Box1>
               </cssfibo.MyFlex1>
 
 
+              <cssfibo.MyFlexR1>
 
+                <cssx.box3input css={{ width: "244px" }}>
 
+                  <cssx.input3
+                    css={{ width: "244px" }}
+                    theme={theme3.forma}
+                    name="Nombre"
+                    value={props.this.state.Filtro1}
+                    onChange={props.this.QueryChanged3.bind(props.this)}
+                    key="N1"/>
 
-                    <cssfibo.MyFlexR1>
-
-
-                      <cssx.box3input css={{ width: "244px" }}>
-                        <cssx.input3
-                          css={{ width: "244px" }}
-                          theme={theme3.forma}
-                          name="Nombre"
-                          value={props.this.state.Filtro1}
-                          onChange={props.this.QueryChanged3.bind(props.this)}
-                          key="N1"
-                        />
-                      </cssx.box3input>
+                </cssx.box3input>
 
 
                 <cssfibo.Boton1
                   class="noatiende"
                   color={"Blue"}
-                  onClick={() => { props.this.getdatos() }}
-                >
+                  onClick={() => { props.this.getdatos() }}>
                   Buscar
-              </cssfibo.Boton1>
+                </cssfibo.Boton1>
 
-
-
-
-
-                    </cssfibo.MyFlexR1>
-
-
-
-
+              </cssfibo.MyFlexR1>
 
 
 
               <cssfibo.MyFlex1
-                css={{ backgroundColor: props.Theme.backgroundcolor }}
-              >
+                css={{ backgroundColor: props.Theme.backgroundcolor }}>
+
                 <cssx.box3label css={{ width: "65px" }}>
                   <cssx.h3 />
                 </cssx.box3label>
@@ -122,6 +113,8 @@ const Encabezado = props => {
                 </cssx.box3label>
 
               </cssfibo.MyFlex1>
+
+
             </div>
           </ThemeProvider>
         </div>
@@ -151,6 +144,7 @@ const Listado1 = props => {
                   src={props.Row.Profile_pic}
                   css={{ width: "34px", paddingRight: 21 }}
                 />
+
               </cssx.box3label>
 
               <cssx.box3label css={{ width: "34px", paddingRight: 21 }}>
@@ -244,9 +238,9 @@ export default class Lista extends React.PureComponent {
 
       Filtro1:"Nombre",
 
-
     };
   } // ------------------------- Constructor
+
 
   componentWillMount = () => {
     try {
@@ -256,7 +250,6 @@ export default class Lista extends React.PureComponent {
   }
 
 
-
   logChange = async val => {
     try {
       await this.setState({ DropStart: val });
@@ -264,6 +257,7 @@ export default class Lista extends React.PureComponent {
       this.getdatos();
     } catch (e) {console.error(e)}
   };
+
 
   getdatos = async () => {
     try {
@@ -296,28 +290,14 @@ export default class Lista extends React.PureComponent {
   };
 
 
-
-
-
-
   cerrar = () => {
     WebviewControls.close();
   };
 
 
-
   QueryChanged3(event) {
     this.setState({ Filtro1: event.target.value });
   }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -333,15 +313,6 @@ export default class Lista extends React.PureComponent {
             {({ Seccion1 }) => <div>{Seccion1}</div>}
           </Encabezado>
         </cssfibo.MyFlex3>
-
-
-
-
-
-
-
-
-
 
 
         <cssfibo.MyFlex3 css={{ gridArea: "contenido" }}>

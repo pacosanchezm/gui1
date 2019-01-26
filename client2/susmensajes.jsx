@@ -32,9 +32,6 @@ export default class Modulo extends React.PureComponent {
 
       Resultado: [],
 
-
-
-
       DropPage: [{ value: 0, label: "Página" }],
 
       DropPageOpt: [
@@ -47,15 +44,17 @@ export default class Modulo extends React.PureComponent {
         { value: 1670865973219070, label: "Nelli" },
       ],
 
-
       DropFeed: [{ value: 0, label: "Feed" }],
 
       DropFeedOpt: [],
 
-
-
     };
   } // ------------------------- Constructor
+
+  componentWillMount() {
+    this.getopts()
+  }
+
 
   componentDidMount() {}
 
@@ -72,7 +71,6 @@ export default class Modulo extends React.PureComponent {
   }
 
 
-
   DropPageChange = async val => {
     try {
       await this.setState({ DropPage: val });
@@ -80,18 +78,10 @@ export default class Modulo extends React.PureComponent {
   };
 
 
-
-
-
   DropFeedChange = async val => {
     await this.setState({ DropFeed: val });
   };
 
-
-
-  componentWillMount() {
-    this.getopts()
-  }
 
   async sendmensaje(Mensaje) {
     var axdatachart = await axios({
@@ -116,12 +106,7 @@ export default class Modulo extends React.PureComponent {
       }
     });
 
-    //let resultado = axdatachart.data.data.LiveMensajeC;
   }
-
-
-
-
 
 
   getopts = async () => {
@@ -153,22 +138,6 @@ export default class Modulo extends React.PureComponent {
   };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   //--------------------------------------------------------------------
 
   render() {
@@ -180,35 +149,27 @@ export default class Modulo extends React.PureComponent {
 
         <cssfibo.MyFlex3 css={{ gridArea: "contenido" }}>
 
-        <cssfibo.MyFlexR1>
+          <cssfibo.MyFlexR1>
 
-        <cssfibo.Box1
-          css={{
-            width: 400,
-            backgroundColor: 'slategrey',
-            height: 55
-          }}
-        >
-          <Dropbox
-            name="dropEstado"
-            value={this.state.DropPage}
-            options={this.state.DropPageOpt}
-            onChange={this.DropPageChange.bind(this)}
-          />
-        </cssfibo.Box1>
+            <cssfibo.Box1
+              css={{
+                width: 400,
+                backgroundColor: 'slategrey',
+                height: 55
+              }}>
 
-        </cssfibo.MyFlexR1>
+              <Dropbox
+                name="dropEstado"
+                value={this.state.DropPage}
+                options={this.state.DropPageOpt}
+                onChange={this.DropPageChange.bind(this)}
+              />
 
+            </cssfibo.Box1>
 
-
-
+          </cssfibo.MyFlexR1>
 
         </cssfibo.MyFlex3>
-
-
-
-
-
 
 
 
@@ -233,10 +194,8 @@ export default class Modulo extends React.PureComponent {
 
           </cssfibo.MyFlexR1>
 
-
-
-
         </cssfibo.MyFlex3>
+
 
 
         <cssfibo.MyFlex3 css={{ gridArea: "contenido" }}>
@@ -268,6 +227,8 @@ export default class Modulo extends React.PureComponent {
             </div>
           </ThemeProvider>
         </cssfibo.MyFlex3>
+
+
         <br />
         <br />
         <br />
