@@ -30,15 +30,15 @@ const Encabezado = props => {
           <ThemeProvider theme={props.Theme}>
             <div>
               <cssfibo.MyFlex1
-                css={{ backgroundColor: props.Theme.backgroundcolor }}
-              >
+                css={{ backgroundColor: props.Theme.backgroundcolor }}>
+
                 <cssfibo.Box1
                   css={{
-                      width: 144,
-                      backgroundColor: props.Theme.backgroundcolor,
-                      height: 34
-                    }}
-                >
+                    width: 144,
+                    backgroundColor: props.Theme.backgroundcolor,
+                    height: 34
+                  }}>
+
                   <cssfibo.h1
                     text="Subscripciones"
                     size="18"
@@ -46,16 +46,17 @@ const Encabezado = props => {
                     weight="Bold"
                     style="Normal"
                   />
+
                 </cssfibo.Box1>
 
 
                 <cssfibo.Box1
                   css={{
-                      width: 333,
-                      backgroundColor: props.Theme.backgroundcolor,
-                      height: 34
-                    }}
-                >
+                    width: 333,
+                    backgroundColor: props.Theme.backgroundcolor,
+                    height: 34
+                  }}>
+
                   <cssfibo.h1
                     text={props.this.state.Datos[0].Nombre + ' ' + props.this.state.Datos[0].Apellidos}
                     size="14"
@@ -63,17 +64,14 @@ const Encabezado = props => {
                     weight="Normal"
                     style="Normal"
                   />
+
                 </cssfibo.Box1>
-
-
 
               </cssfibo.MyFlex1>
 
 
-
               <cssfibo.MyFlex1
-                css={{ backgroundColor: props.Theme.backgroundcolor }}
-              >
+                css={{ backgroundColor: props.Theme.backgroundcolor }}>
 
 
                 <cssfibo.Box1
@@ -81,8 +79,8 @@ const Encabezado = props => {
                       width: 244,
                       backgroundColor: props.Theme.backgroundcolor,
                       height: 34
-                    }}
-                >
+                    }}>
+
                   <Dropbox
                     name="dropEstado"
                     value={props.this.state.DropStart}
@@ -92,31 +90,27 @@ const Encabezado = props => {
                 </cssfibo.Box1>
 
 
-
                 <cssfibo.Boton1
                   class="noatiende"
                   color={"green"}
-                  onClick={() => { props.this.SusC() }}
-                >
+                  onClick={() => { props.this.SusC() }}>
+
                   Agregar
+
                 </cssfibo.Boton1>
-
-
 
 
               </cssfibo.MyFlex1>
 
 
 
-
-
               <cssfibo.MyFlex1
-                css={{ backgroundColor: props.Theme.backgroundcolor }}
-              >
+                css={{ backgroundColor: props.Theme.backgroundcolor }}>
 
                 <cssx.box3label css={{ width: "144px" }}>
                   <cssx.h3>Suscripcion</cssx.h3>
                 </cssx.box3label>
+
 
                 <cssx.box3label css={{ width: "55px" }}>
                   <cssx.h3>Status</cssx.h3>
@@ -127,7 +121,9 @@ const Encabezado = props => {
                   <cssx.h3>Obv</cssx.h3>
                 </cssx.box3label>
 
+
               </cssfibo.MyFlex1>
+
             </div>
           </ThemeProvider>
         </div>
@@ -138,6 +134,8 @@ const Encabezado = props => {
 
   } catch (e) { console.error(e) }
 };
+
+
 
 const Listado1 = props => {
   try {
@@ -152,14 +150,15 @@ const Listado1 = props => {
             <cssfibo.MyFlex1 css={{ backgroundColor: BgColor }}>
 
 
-
               <cssx.box3label css={{ width: "123px", paddingRight: 11 }}>
                 <cssx.h3>{props.Row.FeedTitulo}</cssx.h3>
               </cssx.box3label>
 
+
               <cssx.box3label css={{ width: "55px" }}>
                 <cssx.h3>{props.Row.Status}</cssx.h3>
               </cssx.box3label>
+
 
               <cssx.box3label css={{ width: "233px" }}>
                 <cssx.h3>{props.Row.Obv}</cssx.h3>
@@ -170,9 +169,10 @@ const Listado1 = props => {
               <cssfibo.Boton1
                 class="noatiende"
                 color={"Red"}
-                onClick={() => { props.this.SusD(props.Row.Id) }}
-              >
+                onClick={() => { props.this.SusD(props.Row.Id) }}>
+
                 Borrar
+
               </cssfibo.Boton1>
 
 
@@ -213,9 +213,6 @@ const LoadingSpinner = () => (
 
 
 
-
-
-
 // Component --------------------------------------------------------------
 
 export default class Lista extends React.PureComponent {
@@ -239,7 +236,6 @@ export default class Lista extends React.PureComponent {
       ],
 
 
-
       Registros: [
         {
           Id: "",
@@ -253,12 +249,9 @@ export default class Lista extends React.PureComponent {
       ],
 
 
-
       DropStart: [{ value: 0, label: "Feed" }],
 
       Dropoptions: []
-
-
 
 
     };
@@ -271,7 +264,6 @@ export default class Lista extends React.PureComponent {
       this.getopts()
 
     } catch (e) { console.error(e) }
-
   }
 
 
@@ -280,7 +272,7 @@ export default class Lista extends React.PureComponent {
     try {
       this.setState({ DropStart: val });
     } catch (e) { console.error(e) }
-  };
+  }
 
 
   getdatos = async () => {
@@ -302,17 +294,16 @@ export default class Lista extends React.PureComponent {
             }
           }
         }
-      });
+      })
 
       this.setState({ Datos: axdata.data.data.UsuarioFbId })
 
     } catch (e) { console.error(e) }
-  };
+  }
 
 
   getregs = async () => {
     try {
-     // this.setState({ loading: true });
 
       var axdata = await axios({
         url: "https://smxai.net/graphqlpub",
@@ -334,7 +325,6 @@ export default class Lista extends React.PureComponent {
       });
 
       this.setState({ Registros: axdata.data.data.UsuarioSus })
-      //this.setState({ loading: false })
 
     } catch (e) { console.error(e) }
   };
@@ -426,7 +416,6 @@ export default class Lista extends React.PureComponent {
 
 
 
-
   // Render ------------------------------------------------------------------------
 
   render() {
@@ -464,9 +453,6 @@ export default class Lista extends React.PureComponent {
       </div>
     );
   }
-
-
-
 
 
   // ---------------------------------------------------------------- Render
