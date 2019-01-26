@@ -76,10 +76,22 @@ const Encabezado = props => {
                           theme={theme3.forma}
                           name="Nombre"
                           value={props.this.state.Filtro1}
-                          onChange={props.this.QueryChanged3.bind(this)}
+                          onChange={props.this.QueryChanged3.bind(props.this)}
                           key="N1"
                         />
                       </cssx.box3input>
+
+
+                <cssfibo.Boton1
+                  class="noatiende"
+                  color={"Blue"}
+                  onClick={() => { props.this.getdatos() }}
+                >
+                  Buscar
+              </cssfibo.Boton1>
+
+
+
 
 
                     </cssfibo.MyFlexR1>
@@ -230,7 +242,7 @@ export default class Lista extends React.PureComponent {
         { value: 179694742435753, label: "YosoyTijuana" },
       ],
 
-    Filtro1:"",
+      Filtro1:"Nombre",
 
 
     };
@@ -238,7 +250,7 @@ export default class Lista extends React.PureComponent {
 
   componentWillMount = () => {
     try {
-      this.getdatos(0);
+      this.getdatos();
     } catch (e) { console.error(e) }
 
   }
@@ -247,13 +259,13 @@ export default class Lista extends React.PureComponent {
 
   logChange = async val => {
     try {
-      this.setState({ DropStart: val });
+      await this.setState({ DropStart: val });
       //await (this.setState({ Pagina: 1 }))
-      this.getdatos(val.value);
+      this.getdatos();
     } catch (e) {console.error(e)}
   };
 
-  getdatos = async Page => {
+  getdatos = async () => {
     try {
       this.setState({ loading: true });
       var axdata = await axios({
@@ -269,7 +281,8 @@ export default class Lista extends React.PureComponent {
           `,
           variables: {
             Query: {
-              Page: Page,
+              Page: this.state.DropStart.value,
+              Nombre: this.state.Filtro1,
               Limit: 25
             }
           }
@@ -282,29 +295,10 @@ export default class Lista extends React.PureComponent {
     } catch (e) {console.error(e)}
   };
 
-  StatusU = async (Id, Status) => {
-    try {
-      await axios({
-        url: "https://smxai.net/graphqlpub",
-        method: "post",
-        data: {
-          query: `
-            mutation LiveMensajeU($Reg: LiveMensajeInput) {
-              LiveMensajeU(Reg: $Reg)
-            }
-          `,
-          variables: {
-            Reg: {
-              Id: Id,
-              Status: Status
-            }
-          }
-        }
-      });
 
-      this.getdatos();
-    } catch (e) {console.error(e)}
-  };
+
+
+
 
   cerrar = () => {
     WebviewControls.close();

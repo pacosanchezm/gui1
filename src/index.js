@@ -22,7 +22,7 @@ import Sussubs from "../client2/sussubs.jsx";
 
 const rootElement = document.getElementById("root");
 
-let torender = 9;
+let torender = 8;
 
 //let usr = 1309103235803674; //paco
 
