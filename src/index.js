@@ -17,12 +17,11 @@ import SusMensajes from "../client2/susmensajes.jsx";
 import Sususuarios from "../client2/sususuarios.jsx";
 import Sussubs from "../client2/sussubs.jsx";
 
-
-
+import Eventomz from "../client2/eventomzdetalle";
 
 const rootElement = document.getElementById("root");
 
-let torender = 9;
+let torender = 11;
 
 //let usr = 1309103235803674; //paco
 
@@ -32,7 +31,7 @@ let usr = 1658827024129843; //paco
 
 let page = 1670865973219070;
 
-let id = 188912;
+let id = 1;
 let opt = 2;
 
 if (torender === 1) {
@@ -88,7 +87,6 @@ if (torender === 8) {
   );
 }
 
-
 if (torender === 9) {
   ReactDOM.render(
     <Sususuarios usr={usr} page={page} id={id} opt={opt} />,
@@ -96,13 +94,16 @@ if (torender === 9) {
   );
 }
 
-
-
-
-
 if (torender === 10) {
   ReactDOM.render(
     <Sussubs usr={usr} page={page} id={id} opt={opt} />,
+    rootElement
+  );
+}
+
+if (torender === 11) {
+  ReactDOM.render(
+    <Eventomz usr={usr} page={page} id={id} opt={opt} />,
     rootElement
   );
 }
