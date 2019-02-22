@@ -22,22 +22,21 @@ let Micolor = true;
 
 const Encabezado = props => {
   try {
-
     const Seccion1 = () => {
       return (
         <div>
           <ThemeProvider theme={props.Theme}>
             <div>
               <cssfibo.MyFlex1
-                css={{ backgroundColor: props.Theme.backgroundcolor }}>
-
+                css={{ backgroundColor: props.Theme.backgroundcolor }}
+              >
                 <cssfibo.Box1
                   css={{
                     width: 89,
                     backgroundColor: props.Theme.backgroundcolor,
                     height: 34
-                  }}>
-
+                  }}
+                >
                   <cssfibo.h1
                     text="Usuarioss"
                     size="18"
@@ -45,7 +44,6 @@ const Encabezado = props => {
                     weight="Bold"
                     style="Normal"
                   />
-
                 </cssfibo.Box1>
 
                 <cssfibo.Box1
@@ -53,49 +51,43 @@ const Encabezado = props => {
                     width: 244,
                     backgroundColor: props.Theme.backgroundcolor,
                     height: 34
-                  }}>
-
+                  }}
+                >
                   <Dropbox
                     name="dropEstado"
                     value={props.this.state.DropStart}
                     options={props.this.state.Dropoptions}
                     onChange={props.this.logChange.bind(this)}
                   />
-
-
                 </cssfibo.Box1>
               </cssfibo.MyFlex1>
 
-
               <cssfibo.MyFlexR1>
-
                 <cssx.box3input css={{ width: "244px" }}>
-
                   <cssx.input3
                     css={{ width: "244px" }}
                     theme={theme3.forma}
                     name="Nombre"
                     value={props.this.state.Filtro1}
                     onChange={props.this.QueryChanged3.bind(props.this)}
-                    key="N1"/>
-
+                    key="N1"
+                  />
                 </cssx.box3input>
-
 
                 <cssfibo.Boton1
                   class="noatiende"
                   color={"Blue"}
-                  onClick={() => { props.this.getdatos() }}>
+                  onClick={() => {
+                    props.this.getdatos();
+                  }}
+                >
                   Buscar
                 </cssfibo.Boton1>
-
               </cssfibo.MyFlexR1>
 
-
-
               <cssfibo.MyFlex1
-                css={{ backgroundColor: props.Theme.backgroundcolor }}>
-
+                css={{ backgroundColor: props.Theme.backgroundcolor }}
+              >
                 <cssx.box3label css={{ width: "65px" }}>
                   <cssx.h3 />
                 </cssx.box3label>
@@ -111,29 +103,32 @@ const Encabezado = props => {
                 <cssx.box3label css={{ width: "89px" }}>
                   <cssx.h3>Apellidos</cssx.h3>
                 </cssx.box3label>
-
               </cssfibo.MyFlex1>
-
-
             </div>
           </ThemeProvider>
         </div>
       );
     };
 
-    return Seccion1()
-
-  } catch (e) {console.error(e)}
+    return Seccion1();
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 const Listado1 = props => {
   try {
     const Renglon1 = props => {
       let BgColor;
-      if (props.RenglonColor === false) {BgColor = "White"}
-      if (props.RenglonColor === true) {BgColor = "WhiteSmoke"}
+      if (props.RenglonColor === false) {
+        BgColor = "White";
+      }
+      if (props.RenglonColor === true) {
+        BgColor = "WhiteSmoke";
+      }
 
-      let miurl = "https://smxai.net/suspanel?feed=0&secc=3&opt=2&usr=" + props.Row.FbId
+      let miurl =
+        "https://smxai.net/suspanel?feed=0&secc=3&opt=2&usr=" + props.Row.FbId;
 
       return (
         <ThemeProvider theme={props.Theme}>
@@ -144,7 +139,6 @@ const Listado1 = props => {
                   src={props.Row.Profile_pic}
                   css={{ width: "34px", paddingRight: 21 }}
                 />
-
               </cssx.box3label>
 
               <cssx.box3label css={{ width: "34px", paddingRight: 21 }}>
@@ -159,15 +153,13 @@ const Listado1 = props => {
                 <cssx.h3>{props.Row.Apellidos}</cssx.h3>
               </cssx.box3label>
 
-
-              <cssx.a4 {...props}
-                text={'ir'}
+              <cssx.a4
+                {...props}
+                text={"ir"}
                 url={miurl}
                 target="_blank"
                 width={34}
               />
-
-
             </cssfibo.MyFlex1>
           </div>
         </ThemeProvider>
@@ -184,13 +176,17 @@ const Listado1 = props => {
             Theme={theme3.renglon}
             this={props.this}
           />
-        {(() => {Micolor = !Micolor})()}
+          {(() => {
+            Micolor = !Micolor;
+          })()}
         </div>
       );
     });
 
     return <div>{MiMapa}</div>;
-  } catch (e) {console.error(e)}
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 const LoadingSpinner = () => (
@@ -221,7 +217,7 @@ export default class Lista extends React.PureComponent {
           Profile_pic: "",
           Genero: "",
           Page: "",
-          FbId:"",
+          FbId: ""
         }
       ],
 
@@ -233,31 +229,30 @@ export default class Lista extends React.PureComponent {
         { value: 608866805951764, label: "YosoyMonterrey" },
         { value: 615428365299641, label: "YosoyGuadalajara" },
         { value: 326130311097631, label: "YosoyQueretaro" },
-        { value: 179694742435753, label: "YosoyTijuana" },
+        { value: 179694742435753, label: "YosoyTijuana" }
       ],
 
-      Filtro1:"Nombre",
-
+      Filtro1: "Nombre"
     };
   } // ------------------------- Constructor
-
 
   componentWillMount = () => {
     try {
       this.getdatos();
-    } catch (e) { console.error(e) }
-
-  }
-
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   logChange = async val => {
     try {
       await this.setState({ DropStart: val });
       //await (this.setState({ Pagina: 1 }))
       this.getdatos();
-    } catch (e) {console.error(e)}
+    } catch (e) {
+      console.error(e);
+    }
   };
-
 
   getdatos = async () => {
     try {
@@ -285,21 +280,19 @@ export default class Lista extends React.PureComponent {
 
       let data = axdata.data.data.UsuariosPage;
       this.setState({ Registros: data });
-      this.setState({ loading: false })
-    } catch (e) {console.error(e)}
+      this.setState({ loading: false });
+    } catch (e) {
+      console.error(e);
+    }
   };
-
 
   cerrar = () => {
     WebviewControls.close();
   };
 
-
   QueryChanged3(event) {
     this.setState({ Filtro1: event.target.value });
   }
-
-
 
   // Render ------------------------------------------------------------------------
 
@@ -313,7 +306,6 @@ export default class Lista extends React.PureComponent {
             {({ Seccion1 }) => <div>{Seccion1}</div>}
           </Encabezado>
         </cssfibo.MyFlex3>
-
 
         <cssfibo.MyFlex3 css={{ gridArea: "contenido" }}>
           <ThemeProvider theme={theme3.forma}>

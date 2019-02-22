@@ -13,15 +13,19 @@ import DashMain from "../client2/dashmain1";
 
 //import MensajesAir from "../client2/livemensajesair.jsx";
 
-import SusMensajes from "../client2/susmensajes.jsx";
+//import SusMensajes from "../client2/susmensajes.jsx";
 import Sususuarios from "../client2/sususuarios.jsx";
 import Sussubs from "../client2/sussubs.jsx";
 
 import Eventomz from "../client2/eventomzdetalle";
 
+import Iterator1 from "../client2/smxiterator1.jsx";
+
+import Eventodash1 from "../client2/crm1_eventodash1.jsx";
+
 const rootElement = document.getElementById("root");
 
-let torender = 11;
+let torender = 13;
 
 //let usr = 1309103235803674; //paco
 
@@ -104,6 +108,20 @@ if (torender === 10) {
 if (torender === 11) {
   ReactDOM.render(
     <Eventomz usr={usr} page={page} id={id} opt={opt} />,
+    rootElement
+  );
+}
+
+if (torender === 12) {
+  ReactDOM.render(
+    <Iterator1 usr={usr} page={page} id={id} opt={opt} />,
+    rootElement
+  );
+}
+
+if (torender === 13) {
+  ReactDOM.render(
+    <Eventodash1 usr={usr} page={page} id={id} opt={opt} />,
     rootElement
   );
 }
