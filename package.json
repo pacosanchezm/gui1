@@ -21,7 +21,7 @@
     "@vx/group": "0.0.189",
     "@vx/hierarchy": "0.0.189",
     "@vx/shape": "0.0.189",
-    "axios": "0.18.0",
+    "axios": "0.20.0",
     "babel-polyfill": "6.26.0",
     "chart.js": "2.7.3",
     "d3": "5.9.2",
