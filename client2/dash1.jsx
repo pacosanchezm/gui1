@@ -136,7 +136,7 @@ let ChartPie1 = (props) => {
 
         options={{
 
-          legend: {display: false,},
+          legend: {display: true,},
 
           title: {
             display: true,
@@ -207,13 +207,13 @@ export default class Modulo extends React.PureComponent {
           `,
 
         variables: {
-          Campana: 3
+          Campana: 5
         }
       }
     });
 
     let resultado = axdatachart.data.data.IndMailStatusX;
-
+    console.log(resultado)
     this.setState({ Resultado: resultado });
 
     let Labels = [];
