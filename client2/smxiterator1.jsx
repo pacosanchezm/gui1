@@ -26,12 +26,6 @@ const Input = styled.input`
 
 //--------------------------------------------------------------
 
-var EsFeedMensaje = new EventSource(
-  "https://smxai.net/livecanales/feedmensaje",
-  { withCredentials: true }
-);
-
-//---------------------------------------------------------------
 
 export default class Usuario extends React.PureComponent {
   constructor(props) {
@@ -41,7 +35,6 @@ export default class Usuario extends React.PureComponent {
       botonguardar: "Grey",
       botonmandar: "Grey",
 
-      boton3: "Orange",
 
       Migrar: true,
 
@@ -56,6 +49,7 @@ export default class Usuario extends React.PureComponent {
 
       segundos: 3,
       limite: 50,
+
       idmandar: 1
     };
 
@@ -71,6 +65,7 @@ export default class Usuario extends React.PureComponent {
 
   delay = seconds =>
     new Promise(resolve => setTimeout(resolve, seconds * 1000));
+
 
   Pullmails = async (campana, limit) => {
     try {
@@ -291,6 +286,7 @@ export default class Usuario extends React.PureComponent {
     }
   };
 
+
   render() {
     return (
       <div>
@@ -314,6 +310,9 @@ export default class Usuario extends React.PureComponent {
               variant="outline"
             >
               Iterador 3
+          <Box bg="White">
+            <Button bg="green" onClick={() => this.Iterar()}>
+              Iterador1
             </Button>
           </Box>
         </Container>

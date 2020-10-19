@@ -134,10 +134,13 @@ import ReactDOM from "react-dom";
 // import Loguincs2 from "../eai_ui/cs2logini";
 
 
+import Iterator1 from "../client2/smxiterator1.jsx";
+
 const rootElement = document.getElementById("root");
 
 let page;
 let id;
+
 
 
 
@@ -558,3 +561,11 @@ if (torender === 39) {
 //     rootElement
 //   );
 // }
+
+if (torender === 12) {
+  ReactDOM.render(
+    <Iterator1 usr={usr} page={page} id={id} opt={opt} />,
+    rootElement
+  );
+}
+
