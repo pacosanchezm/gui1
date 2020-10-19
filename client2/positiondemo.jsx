@@ -18,7 +18,7 @@ export default (App = props => {
 
   function MyMap() {
     const { isLoaded, loadError } = useLoadScript({
-      googleMapsApiKey: "AIzaSyANsDNTlfnNbnuJqqzG5dNdYVM573MFbb0" // ,
+      googleMapsApiKey: "clavegoogle" // ,
       // ...otherOptions
     });
 
